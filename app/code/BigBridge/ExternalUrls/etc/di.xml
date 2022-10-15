@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<type name="Magento\Catalog\Block\Product\View\Gallery">
+    <plugin name="add_images_to_gallery" type="BigBridge\ExternalUrls\Plugin\AddImagesToGalleryBlock" />
+</type>
+<type name="Magento\Catalog\Block\Product\AbstractProduct">
+    <plugin name="after_get_image_plugin" type="BigBridge\ExternalUrls\Plugin\AfterGetImage"/>
+</type>
+<type name="Magento\Catalog\Block\Product\Image">
+    <plugin name="after_get_image_url_plugin" type="BigBridge\ExternalUrls\Plugin\AfterGetImageUrl"/>
+</type>
+<type name="Magento\Checkout\CustomerData\AbstractItem">
+    <plugin name="minicart_after_get_itemdata_plugin" type="BigBridge\ExternalUrls\Plugin\Minicart\AfterGetItemData"/>
+</type>
+</config>
