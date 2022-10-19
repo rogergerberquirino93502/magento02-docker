@@ -63,8 +63,7 @@ class ProductStoreView
     const ATTR_SOCIAL_QUANTITY = 'social_quantity';
     const ATTR_SOCIAL_BEINGS = 'social_beings';
 
-
-
+    const ATTR_CAPTURAS_IMAGEN = 'capturas_imagen';
     const SWATCH_IMAGE = 'swatch_image';
     const SMALL_IMAGE = 'small_image';
     const BASE_IMAGE = 'image';
@@ -341,6 +340,11 @@ class ProductStoreView
     public function getSocialBeings()
     {
         return array_key_exists(self::ATTR_SOCIAL_BEINGS, $this->attributes) ? $this->attributes[self::ATTR_SOCIAL_BEINGS]: null;
+    }
+
+    public function setCaptureImage(string $name = null)
+    {
+        $this->attributes[self::ATTR_CAPTURAS_IMAGEN] = ($name === null) ? null : trim($name);
     }
 
     /**

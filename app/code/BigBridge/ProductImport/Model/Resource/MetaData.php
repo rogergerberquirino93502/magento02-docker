@@ -312,8 +312,7 @@ class MetaData
     /**
      * Makes Magento product table names and ids quickly available.
      * These values do not change as a result of the import,
-     * but some of these values may changed by your custom code. So init() allows you to reload these values.
-     *
+     * but some of these values may changed by your custom code. So init() allows you to reload these values
      * @throws Exception
      */
     public function loadTables()

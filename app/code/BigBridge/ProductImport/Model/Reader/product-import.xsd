@@ -102,7 +102,6 @@
 				<xs:element ref="custom" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="multi_select" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element ref="role" minOccurs="0" maxOccurs="unbounded"/>
-
 			</xs:choice>
 		</xs:complexType>
 	</xs:element>
