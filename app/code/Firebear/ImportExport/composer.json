@@ -1,0 +1,27 @@
+{
+    "name": "firebear/importexport",
+    "description": "Improve default Magento 2 Import / Export features https://firebearstudio.com/blog/",
+    "require": {
+        "php": ">=7.1.0",
+        "salsify/json-streaming-parser":  "~8.0",
+        "tcdent/php-restclient": "^0.1.7",
+        "tmwk/client-prestashop-api": "^1.0",
+        "bcncommerce/json-stream": "^0.4.1",
+        "google/apiclient": "^2.0",
+        "microsoft/microsoft-graph": "^1.25",
+        "guzzlehttp/psr7": "^1.7 || ^2.2",
+        "league/oauth2-client": "^2.4",
+        "openspout/openspout": "^3.7.4 || ^4.2"
+    },
+    "type": "magento2-module",
+    "version": "3.8.0",
+    "license": "OSL-3.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Firebear\\ImportExport\\" : ""
+        }
+    }
+}

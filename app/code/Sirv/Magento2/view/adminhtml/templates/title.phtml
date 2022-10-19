@@ -1,0 +1,27 @@
+<?php
+/**
+ * Html page title template
+ *
+ * @author    Sirv Limited <support@sirv.com>
+ * @copyright Copyright (c) 2018-2022 Sirv Limited <support@sirv.com>. All rights reserved
+ * @license   https://sirv.com/
+ * @link      https://sirv.com/integration/magento/
+ *
+ * @codingStandardsIgnoreFile
+ */
+
+/**
+ * @var $block \Magento\Theme\Block\Html\Title
+ */
+
+$titleId = ($block->getTitleId()) ? ' id="' . $block->getTitleId() . '"' : '';
+$titleClass = ($block->getTitleClass()) ? ' ' . $block->getTitleClass() : '';
+$title = $block->escapeHtml($block->getPageTitle());
+?>
+
+<div class="page-title-wrapper<?= /* @escapeNotVerified */ $titleClass ?>">
+    <h1 class="page-title"<?= /* @escapeNotVerified */ $titleId ?>>
+        <img src="//sirv.sirv.com/website/sirv-logo-dark-blue.png?h=33&canvas.height=33&canvas.color=%23ffffff00" alt="<?= $title ?>" />
+    </h1>
+    <?= $block->getChildHtml() ?>
+</div>

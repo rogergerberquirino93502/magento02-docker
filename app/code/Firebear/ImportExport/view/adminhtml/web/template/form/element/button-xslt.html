@@ -1,0 +1,27 @@
+<!--
+/**
+ * @copyright: Copyright © 2020 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<button type="button"
+        css="
+            'action-advanced': $data.displayAsLink,
+            'action-secondary': !$data.displayAsLink
+        "
+        click="action"
+        disable="disabled"
+        attr="'data-index': index">
+    <span text="title"></span>
+</button>
+<br/><br/>
+<!-- ko if: error -->
+<label class="admin__field-label"><span data-bind="i18n: 'Errors:',style:{'font-weight': 'bold'}"></span></label>
+<div class="admin__field-error" if="error" data-bind="foreach: errors">
+    <p data-bind="text: $data"></p>
+</div>
+<!-- /ko -->
+<!-- ko if: notice -->
+<div class="admin__field-success" if="notice" data-bind="text:notice">
+</div>
+<!-- /ko -->

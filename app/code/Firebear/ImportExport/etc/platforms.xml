@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Firebear_ImportExport:etc/platforms.xsd">
+    <platform name="magento1" entity="catalog_product" label="Magento 1" model="Firebear\ImportExport\Model\Source\Platform\Magento">
+        <attribute code="_store" reference="_store" />
+        <attribute code="store" reference="_store" />
+        <attribute code="websites" reference="_product_websites" />
+        <attribute code="_root_category" reference="_root_category" />
+        <attribute code="category_ids" reference="categories" />
+        <attribute code="_category" reference="categories" />
+        <attribute code="_type" reference="product_type" />
+        <attribute code="type" reference="product_type" />
+        <attribute code="_links_related_sku" reference="_related_sku" />
+        <attribute code="_links_related_position" reference="_related_position" />
+        <attribute code="_links_crosssell_sku" reference="_crosssell_sku" />
+        <attribute code="_links_crosssell_position" reference="_crosssell_position" />
+        <attribute code="_links_upsell_sku" reference="_upsell_sku" />
+        <attribute code="_links_upsell_position" reference="_upsell_position" />
+        <attribute code="_custom_option_type" reference="_custom_option_type" />
+        <attribute code="_custom_option_is_required" reference="_custom_option_is_required" />
+        <attribute code="_custom_option_price" reference="_custom_option_price" />
+        <attribute code="_custom_option_row_price" reference="_custom_option_row_price" />
+        <attribute code="_custom_option_row_sku" reference="_custom_option_row_sku" />
+        <attribute code="_custom_option_max_characters" reference="_custom_option_max_characters" />
+        <attribute code="_super_products_sku" reference="_super_products_sku" />
+        <attribute code="_super_attribute_code" reference="_super_attribute_code" />
+        <attribute code="_super_attribute_option" reference="_super_attribute_option" />
+        <attribute code="_associated_sku" reference="_associated_sku" />
+        <attribute code="_associated_default_qty" reference="_associated_default_qty" />
+        <attribute code="_attribute_set" reference="_attribute_set" />
+        <attribute code="attribute_set" reference="_attribute_set" />
+        <attribute code="_address_city" reference="city" />
+        <attribute code="_address_company" reference="company" />
+        <attribute code="_address_country_id" reference="country_id" />
+        <attribute code="_address_fax" reference="fax" />
+        <attribute code="_address_postcode" reference="postcode" />
+        <attribute code="_address_region" reference="region" />
+        <attribute code="_address_street" reference="street" />
+        <attribute code="_address_telephone" reference="telephone" />
+        <attribute code="_address_vat_id" reference="vat_id" />
+        <attribute code="_media_lable" reference="_media_label" />
+        <attribute code="website" reference="_product_websites" />
+    </platform>
+<!--    <platform name="magento2" entity="catalog_product" label="Magento 2">
+        <link entity="github_link" suffix="" label="Download sample files"/>
+        <link entity="catalog_product" suffix="" label="Download Sample File For Magento 2"/>
+    </platform>-->
+    <platform name="shopify" entity="catalog_product" label="Shopify" model="Firebear\ImportExport\Model\Source\Platform\Shopify">
+        <attribute code="Variant SKU" reference="sku" />
+        <attribute code="Product Name" reference="name" />
+        <attribute code="Title" reference="name" />
+        <attribute code="Body (HTML)" reference="description" />
+        <attribute code="Variant Price" reference="price" />
+        <attribute code="Variant Inventory Qty" reference="qty" />
+        <attribute code="Image Src" reference="image" />
+        <attribute code="Vendor" reference="manufacturer" />
+        <attribute code="Published" reference="status" />
+        <attribute code="Variant Grams" reference="weight" />
+        <attribute code="SEO Description" reference="meta_description" />
+        <attribute code="SEO Title" reference="meta_title" />
+        <attribute code="Handle" reference="url_key" />
+        <attribute code="product_type" reference="product_type" default="simple"/>
+        <attribute code="_attribute_set" reference="_attribute_set" default="Default"/>
+    </platform>
+    <platform name="prestashop" entity="catalog_product" label="Prestashop" model="Firebear\ImportExport\Model\Source\Platform\Prestashop" >
+        <attribute code="sku" reference="sku" />
+        <attribute code="product_type" reference="product_type" default="simple"/>
+        <attribute code="_attribute_set" reference="_attribute_set" default="Default"/>
+        <attribute code="_product_websites" reference="product_websites" default="base"/>
+        <description label="A prebuilt XSLT is available with in the package, with common variable which needs to be filled in for correct import."/>
+    </platform>
+   <!--<platform name="bol" label="BOL" model="Firebear\ImportExport\Model\Source\Platform\Bol">
+       <attribute code="EAN" reference="sku" />
+       <attribute code="ean" reference="sku" />
+       <attribute code="Price" reference="price" />
+       <attribute code="Stock" reference="qty" />
+       <attribute code="Description" reference="description"/>
+       <attribute code="Title" reference="name"/>
+       <attribute code="title" reference="name"/>
+       <attribute code="imageUrl" reference="image"/>
+       <attribute code="brand" reference="manufacturer"/>
+       <attribute code="Category.category" reference="categories"/>
+       <attribute code="Colour" reference="color"/>
+       <attribute code="OfferNL.sellingPrice" reference="price"/>
+       <attribute code="Gender" reference="gender"/>
+    </platform>-->
+    <platform name="magmi" entity="catalog_product" label="Magmi" model="Firebear\ImportExport\Model\Source\Platform\Magmi">
+        <attribute code="store" reference="_store" />
+        <attribute code="attribute_set" reference="attribute_set_code" />
+        <attribute code="category" reference="categories" />
+        <attribute code="type" reference="product_type" />
+        <attribute code="sku" reference="sku" />
+    </platform>
+</config>

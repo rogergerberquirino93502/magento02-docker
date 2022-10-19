@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogImportExport\Model\Export\RowCustomizer\Composite">
+        <arguments>
+            <argument name="customizers" xsi:type="array">
+                <item name="weeTax" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Tax</item>
+                <item name="bundleProduct" xsi:type="string">Magento\BundleImportExport\Model\Export\RowCustomizer</item>
+                <item name="gropedProduct" xsi:type="string">Magento\GroupedImportExport\Model\Export\RowCustomizer</item>
+                <item name="configurableProduct" xsi:type="string">Magento\ConfigurableImportExport\Model\Export\RowCustomizer</item>
+                <item name="productVideoURL" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\ProductVideo</item>
+                <item name="webkulMarketplace" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\WebkulMarketplace</item>
+                <item name="mageArrayMarketplace" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\MageArrayMarketplace</item>
+                <item name="wyomindAdvancedInventory" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\WyomindAdvancedInventory</item>
+                <item name="magestoreInventory" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\MageStoreInventory</item>
+                <item name="tierPrices" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\TierPrices</item>
+                <item name="downloadableProduct" xsi:type="string">Firebear\ImportExport\Model\Export\Product\Downloadable\RowCustomizer</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Job\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Firebear\ImportExport\Model\Job\DataProvider\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="Firebear\ImportExport\Model\Job\DataProvider\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="advancedImport" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Ui\DataProvider\Import\Job\Form\Modifier\AdvancedImport</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+                <item name="deferred_images" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Ui\DataProvider\Import\Job\Form\Modifier\DeferredImages</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+                <item name="replacing" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Ui\DataProvider\Import\Job\Form\Modifier\Replacing</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+                <item name="encryptor" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Ui\DataProvider\Form\Modifier\Encryptor</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Model\ExportJob\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Firebear\ImportExport\Model\ExportJob\DataProvider\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <virtualType name="Firebear\ImportExport\Model\ExportJob\DataProvider\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="advancedExport" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Ui\DataProvider\Export\Job\Form\Modifier\AdvancedExport</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+                <item name="encryptor" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Ui\DataProvider\Form\Modifier\Encryptor</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Model\Lib\SpoutLib">
+        <arguments>
+            <argument name="className" xsi:type="string">OpenSpout\Reader\ReaderInterface</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Lib\JsonLib">
+        <arguments>
+            <argument name="classNames" xsi:type="array">
+                <item name="bcn" xsi:type="string">Bcn\Component\Json\Writer</item>
+                <item name="jsp" xsi:type="string">JsonStreamingParser\Parser</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Lib\LibPoolInterface">
+        <arguments>
+            <argument name="libs" xsi:type="array">
+                <item name="office" xsi:type="object">Firebear\ImportExport\Model\Lib\SpoutLib\Proxy</item>
+                <item name="json" xsi:type="object">Firebear\ImportExport\Model\Lib\JsonLib\Proxy</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="FirebearImportJobSaveDataProcessor" type="Firebear\ImportExport\Model\Data\CompositeProcessor">
+        <arguments>
+            <argument name="processorList" xsi:type="array">
+                <item name="position" xsi:type="object">Firebear\ImportExport\Model\Data\Import\Job\PositionProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Controller\Adminhtml\Job\Save">
+        <arguments>
+            <argument name="dataProcessor" xsi:type="object">FirebearImportJobSaveDataProcessor</argument>
+        </arguments>
+    </type>
+</config>

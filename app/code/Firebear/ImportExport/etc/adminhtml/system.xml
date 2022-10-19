@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="firebear" translate="label" sortOrder="200">
+            <label>Firebear Studio</label>
+        </tab>
+        <section id="firebear_importexport" translate="label" type="text" sortOrder="100" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Import/Export</label>
+            <tab>firebear</tab>
+            <resource>Firebear_ImportExport::config_importexport</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General</label>
+                <field id="create_attributes" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Create attribute values on the fly</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[
+                        Enable to create attributes values during import automatically. To create new attributes, you should use custom column name structure (for more information see module documentation).
+                        ]]>
+                    </comment>
+                </field>
+                <field id="supplier_code" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select Supplier Code</label>
+                    <can_be_empty>0</can_be_empty>
+                    <source_model>Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\System\SupplierAttribute</source_model>
+                    <comment>
+                        <![CDATA[
+                        Select supplier code to disable products as per supplier name
+                        ]]>
+                    </comment>
+                </field>
+                <field id="encryption" translate="label" type="select" sortOrder="30" showInDefault="1" canRestore="1">
+                    <label>Enable login and password encryption for FTP/SFTP</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="import_config" translate="label" type="text" sortOrder="20" showInDefault="1">
+                <label>Import Config</label>
+                <field id="general_file_bunch_size" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>General File Bunch Size</label>
+                    <tooltip><![CDATA[Default Bunch value is 100]]></tooltip>
+                    <comment>
+                        <![CDATA[
+                            The default bunch size which can be changed as per user specification
+                        ]]>
+                    </comment>
+                    <config_path>general/file/bunch_size</config_path>
+                    <validate>required-entry no-whitespace validate-digits validate-not-negative-number
+                        validate-zero-or-greater
+                    </validate>
+                </field>
+                <field id="import_format_v2_bunch_size" translate="label" type="text" sortOrder="20" showInDefault="1">
+                    <label>Import FormatV2 Bunch Size</label>
+                    <config_path>import/format_v2/bunch_size</config_path>
+                    <tooltip><![CDATA[Default Bunch value is 100]]></tooltip>
+                    <comment>
+                        <![CDATA[
+                            The default bunch size which can be changed as per user specification
+                        ]]>
+                    </comment>
+                    <validate>required-entry no-whitespace validate-digits validate-not-negative-number
+                        validate-zero-or-greater
+                    </validate>
+                </field>
+                <field id="enable_db_log_storage" translate="label" type="select" sortOrder="30" showInDefault="1"
+                       canRestore="1">
+                    <label>Store logs in the database</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="xslt" translate="label" type="text" sortOrder="30" showInDefault="1">
+                <label>XSLT Handle Config</label>
+                <field id="handle_processor_errors" translate="label" type="select" sortOrder="10" showInDefault="1"
+                       canRestore="1">
+                    <label>Handle Errors</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="onedrive" translate="label" type="text" sortOrder="40" showInDefault="1">
+                <label>OneDrive</label>
+                <field id="client_id" translate="label" type="text" sortOrder="10" showInDefault="1">
+                    <label>Client ID</label>
+                </field>
+                <field id="client_secret" translate="label" type="text" sortOrder="20" showInDefault="1">
+                    <label>Client Secret</label>
+                </field>
+                <field id="singin" translate="label" type="button" sortOrder="30" showInDefault="1" >
+                    <label>SignIn in OneDrive and getting RefreshToken</label>
+                    <frontend_model>Firebear\ImportExport\Block\Adminhtml\OneDrive\Signin</frontend_model>
+                    <comment>
+                        <![CDATA[
+                        Fill in the fields above, save the configuration and press Signin.<br />
+                        It is required once to get a refresh token.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="refresh_token" translate="label" type="text" sortOrder="40" showInDefault="1">
+                    <label>Refresh Token</label>
+                    <comment>
+                        <![CDATA[
+                        Will be filled in after authorization automatically.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,17 @@
+<?php
+$attribute = $block->getAttribute();
+if($attribute):
+?>
+<div class="field date <?= $attribute->getAttributeCode() ?>">
+    <label for="<?= $attribute->getAttributeCode() ?>" class="label">
+    <span>
+        <?= $block->escapeHtml(__($attribute->getStoreLabel())) ?>
+    </span>
+    </label>
+    <div class="control">
+        <?= $block->getFieldHtml() ?>
+    </div>
+</div>
+<?php
+endif;
+?>

@@ -1,0 +1,131 @@
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<input class="admin__control-text" type="hidden"
+       data-bind="
+        value: value,
+        valueUpdate: valueUpdate,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+            id: uid,
+            disabled: disabled
+    }"/>
+<!-- ko if: typeText -->
+<input class="admin__control-text" type="text"
+       data-bind="
+        value: textValue,
+        hasFocus: focused,
+        valueUpdate: valueUpdate,
+        attr: {
+            name: elementName +'[text]['+number+']',
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+            disabled: disabled,
+            title: 'To enter a range, type the beginning-end(e.g. 0-58) of the range using a hyphen. '
+    }"/>
+<!-- /ko -->
+<!-- ko if: typeSelect -->
+<select class="admin__control-select" data-bind="
+    attr: {
+        name: elementName +'[select]['+number+']',
+        id: uid,
+        disabled: disabled,
+        'aria-describedby': noticeId
+    },
+    hasFocus: focused,
+    optgroup: options,
+    value: selectValue,
+    optionsCaption: caption,
+    optionsValue: 'value',
+    optionsText: 'label'"></select>
+<!-- /ko -->
+<!-- ko if: typeInt -->
+<strong class="admin__control-support-text line">From:</strong>
+<input class="admin__control-text _short" type="text"
+       data-bind="
+    valueUpdate: valueUpdate,
+    value: fromValue,
+    attr: {
+        name: elementName +'[from]['+number+']',
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        disabled: disabled
+    }" /><br/>
+<strong class="admin__control-support-text line">To:</strong>
+<input class="admin__control-text _short" type="text" data-bind="
+    valueUpdate: valueUpdate,
+    value: toValue,
+    attr: {
+        name: elementName +'[to]['+number+']',
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        disabled: disabled
+    }" />
+<!-- /ko -->
+<!-- ko if: typeRange -->
+<strong class="admin__control-support-text line">From:</strong>
+<input class="admin__control-text _short" type="text"
+       data-bind="
+    valueUpdate: valueUpdate,
+    value: fromValue,
+    attr: {
+        name: elementName +'[from]['+number+']',
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        disabled: disabled
+    }" /><br/>
+<strong class="admin__control-support-text line">To:</strong>
+<input class="admin__control-text _short" type="text" data-bind="
+    valueUpdate: valueUpdate,
+    value: toValue,
+    attr: {
+        name: elementName +'[to]['+number+']',
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        disabled: disabled
+    }" /><br/>
+<strong class="admin__control-support-text line">Exclude:</strong>
+<input class="admin__control-text _short" type="text" data-bind="
+    valueUpdate: valueUpdate,
+    value: excludeValue,
+    attr: {
+        name: elementName +'[exclude]['+number+']',
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        disabled: disabled
+    }" />
+<!-- /ko -->
+<!-- ko if: typeDate -->
+<strong class="admin__control-support-text line">From:</strong>
+<input class="admin__control-text" type="text" data-bind="
+    hasFocus: focused,
+    dateground: { storage: shiftedValue, options: dateOptions },
+    valueUpdate: valueUpdate,
+    attr: {
+        value: shiftedValue,
+        name: elementName +'[shifted]['+number+']',
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        disabled: disabled
+    }" /><br/>
+<strong class="admin__control-support-text line">To:</strong>
+<input class="admin__control-text" type="text" data-bind="
+    hasFocus: focused,
+    dateground: { storage: secondShiftedValue, options: dateOptions },
+    valueUpdate: valueUpdate,
+    attr: {
+        value: secondShiftedValue,
+        name: elementName +'[second_shifted]['+number+']',
+        placeholder: placeholder,
+        'aria-describedby': noticeId,
+        disabled: disabled
+    }" />
+<!-- /ko -->
+<!-- ko if: typeNot -->
+We can't filter an attribute with no attribute options.
+<!-- /ko -->

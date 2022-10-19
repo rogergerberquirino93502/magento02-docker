@@ -1,0 +1,41 @@
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<div class="admin__field _required"
+     data-bind="css: $data.additionalClasses, attr: {'data-index': index}, visible: visible">
+
+    <div class="admin__field-label" data-bind="visible: $data.labelVisible">
+        <label data-bind="attr: {for: uid}">
+            <span data-bind="
+                    attr: {
+                        'data-config-scope': $data.scopeLabel
+                    },
+                    i18n: label">Password</span>
+        </label>
+    </div>
+    <div class="admin__field-control"
+         data-bind="
+            css: {
+                    '_with-tooltip': $data.tooltip,
+                    '_with-reset': $data.showFallbackReset && $data.isDifferedFromDefault
+                 }">
+
+        <input class="admin__control-text" type="password"
+               data-bind="
+                event: {change: userChanges},
+                value: value,
+                hasFocus: focused,
+                valueUpdate: valueUpdate,
+                attr: {
+                    name: inputName,
+                    placeholder: placeholder,
+                    'aria-describedby': noticeId,
+                    id: uid,
+                    disabled: disabled,
+                    maxlength: 255
+            }"/>
+    </div>
+</div>

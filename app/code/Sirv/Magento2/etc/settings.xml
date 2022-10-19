@@ -1,0 +1,718 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Module settings
+ *
+ * @author    Sirv Limited <support@sirv.com>
+ * @copyright Copyright (c) 2018-2022 Sirv Limited <support@sirv.com>. All rights reserved
+ * @license   https://sirv.com/
+ * @link      https://sirv.com/integration/magento/
+ */
+-->
+<settings>
+    <notice><![CDATA[Accelerate your website with faster loading images. <a href="https://sirv.com" target="_blank" class="sirv-open-in-new-window">About Sirv CDN</a> | <a href="https://my.sirv.com/#/contact/" target="_blank" class="sirv-open-in-new-window">Get support</a>]]></notice>
+    <group id="user">
+        <label>Sirv account</label>
+        <fields>
+            <field>
+                <name>account_exists</name>
+                <label>I already have a Sirv account</label>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\NewAccount</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>yes</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>no</value>
+                    </option>
+                </options>
+                <value>yes</value>
+            </field>
+            <field>
+                <name>email</name>
+                <label>Email</label>
+                <type>email</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Email</type_class>
+                <placeholder>Sirv account email</placeholder>
+                <autocomplete>off</autocomplete>
+                <required>true</required>
+                <autofocus/>
+            </field>
+            <field>
+                <name>password</name>
+                <label>Password</label>
+                <type>password</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Password</type_class>
+                <placeholder>Sirv account password</placeholder>
+                <autocomplete>new-password</autocomplete>
+                <required>true</required>
+            </field>
+            <field>
+                <name>first_and_last_name</name>
+                <label>First and last name</label>
+                <type>text</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\FirstAndLastName</type_class>
+                <value></value>
+                <required>true</required>
+            </field>
+            <field>
+                <name>alias</name>
+                <label>Account name</label>
+                <notice><![CDATA[Choose a name that suits your business. At least 6 characters, may include letters, numbers and hyphens.]]></notice>
+                <type>text</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Text</type_class>
+                <placeholder>Choose a name</placeholder>
+                <value></value>
+                <required>true</required>
+            </field>
+            <field>
+                <name>account</name>
+                <label>Account</label>
+                <type>select</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Select</type_class>
+                <options></options>
+                <value></value>
+                <placeholder>Select Sirv account</placeholder>
+                <required>true</required>
+            </field>
+            <field>
+                <name>connect</name>
+                <label></label>
+                <type>button</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Button</type_class>
+                <value>Connect account</value>
+                <title>Connect account</title>
+            </field>
+            <field>
+                <name>register</name>
+                <label></label>
+                <notice><![CDATA[No credit card needed.<br/>Enjoy free 5GB storage & 20GB transfer for 30 days. Then choose a <a href="https://sirv.com/pricing/" target="_blank" class="sirv-open-in-new-window">free or paid plan</a>.<br/>By signing up, you agree to our <a href="https://sirv.com/terms/" target="_blank" class="sirv-open-in-new-window">Terms of Service</a>.<br/>]]></notice>
+                <type>button</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Button</type_class>
+                <value>Get started</value>
+                <title>Get started</title>
+            </field>
+        </fields>
+    </group>
+    <group id="general">
+        <label>CDN settings</label>
+        <fields>
+            <field>
+                <name>enabled</name>
+                <label>Enable Sirv</label>
+                <tooltip><![CDATA[Enable Sirv to automatically copy your media gallery to Sirv. Files will stay in sync and be optimised and served by Sirv CDN.]]></tooltip>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\Switcher</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>true</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>false</value>
+                    </option>
+                </options>
+                <value>false</value>
+                <install/>
+            </field>
+            <field>
+                <name>sub_alias</name>
+                <label>Domain</label>
+                <type>select</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Select</type_class>
+                <options></options>
+            </field>
+            <field>
+                <name>image_folder</name>
+                <label>Folder name on Sirv</label>
+                <tooltip><![CDATA[Images will be copied here in <a class="sirv-open-in-new-window" target="_blank" href="https://my.sirv.com/#/browse/">your Sirv account</a>. The folder will be automatically created by Sirv.]]></tooltip>
+                <type>text</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Folder</type_class>
+                <value>magento</value>
+                <install/>
+            </field>
+            <field>
+                <name>auto_fetch</name>
+                <label>Serve other files from Sirv CDN</label>
+                <!-- <notice><![CDATA[Sirv will fetch files from this domain:]]></notice> -->
+                <tooltip><![CDATA[Sirv CDN can serve your JS, CSS and static theme files too. It minifies JS & CSS and uses multiplexing to accelerate file loading. <a class="sirv-open-in-new-window" target="_blank" href="https://sirv.com/help/articles/magento-cdn-sirv-extension/#how-to-set-up-a-cdn-in-magento-2">Learn more</a>.]]></tooltip>
+                <type>radios</type>
+                <!-- <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios</type_class> -->
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\AutoFetch</type_class>
+                <options>
+                    <option>
+                        <label>JS, CSS &amp; associated files (recommended)</label>
+                        <value>custom</value>
+                    </option>
+                    <option>
+                        <label>JS, CSS &amp; all static files</label>
+                        <value>all</value>
+                    </option>
+                    <option>
+                        <label>No other files</label>
+                        <value>none</value>
+                    </option>
+                </options>
+                <value>custom</value>
+            </field>
+            <!--
+            <field>
+                <name>url_prefix</name>
+                <label></label>
+                <notice></notice>
+                <type>select</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Select</type_class>
+                <options></options>
+                <placeholder></placeholder>
+                <can_hide_select/>
+            </field>
+            -->
+            <field>
+                <name>excluded_files</name>
+                <label>Exclude files/folders</label>
+                <before_element_html>Files that should not served by Sirv:</before_element_html>
+                <placeholder><![CDATA[e.g.&#xa;/frontend/*.css&#xa;/frontend/Magento/luma/en_US/images/logo.svg&#xa;]]></placeholder>
+                <notice><![CDATA[You can enter full URLs and the domain will be stripped.<br/>Use * to specify all files at a certain path.]]></notice>
+                <type>textarea</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Textarea</type_class>
+                <value></value>
+            </field>
+            <field>
+                <name>excluded_pages</name>
+                <label>Exclude pages</label>
+                <before_element_html>Web pages that should not have files served by Sirv:</before_element_html>
+                <placeholder><![CDATA[e.g.&#xa;/example/particular-page.html&#xa;/a-whole-section/*&#xa;]]></placeholder>
+                <notice><![CDATA[You can enter full URLs and the domain will be stripped.<br/>Use * to specify all pages at a certain path.]]></notice>
+                <type>textarea</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Textarea</type_class>
+                <value></value>
+            </field>
+        </fields>
+    </group>
+    <group id="display_settings">
+        <label>Display settings</label>
+        <fields>
+            <field>
+                <name>lazy_load</name>
+                <label>Lazy loading</label>
+                <tooltip><![CDATA[Only load images when they enter the viewport and perfectly scale them to fit the container.]]></tooltip>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\LazyLoad</type_class>
+                <options>
+                    <option>
+                        <label>On</label>
+                        <value>true</value>
+                    </option>
+                    <option>
+                        <label>Off</label>
+                        <value>false</value>
+                    </option>
+                </options>
+                <value>true</value>
+            </field>
+            <field>
+                <name>excluded_from_lazy_load</name>
+                <label>Exclude images</label>
+                <before_element_html>Disable lazy loading on specific images, such as your website logo:</before_element_html>
+                <placeholder><![CDATA[e.g.&#xa;/wysiwyg/home/home-main.jpg&#xa;/frontend/Magento/luma/en_US/images/logo.svg&#xa;]]></placeholder>
+                <notice><![CDATA[Enter full URLs or use * to specify files with a certain path.]]></notice>
+                <type>textarea</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Textarea</type_class>
+                <value>/captcha*</value>
+                <install/>
+            </field>
+            <field>
+                <name>image_scaling</name>
+                <label>Image scaling</label>
+                <tooltip><![CDATA[How to scale/crop the image to fit the container.]]></tooltip>
+                <type>select</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Select</type_class>
+                <options>
+                    <option>
+                        <label>Fit into container</label>
+                        <value>contain</value>
+                    </option>
+                    <option>
+                        <label>Cover container</label>
+                        <value>cover</value>
+                    </option>
+                    <option>
+                        <label>Crop into container</label>
+                        <value>crop</value>
+                    </option>
+                </options>
+                <value>contain</value>
+            </field>
+            <!--
+            <field>
+                <name>js_components</name>
+                <label>sirv.js components</label>
+                <tooltip><![CDATA[
+                    Reduce JS file size by
+                    <a target="_blank" href="https://sirv.com/help/articles/sirv-media-viewer/#selectively-load-compontents">
+                        selectively loading components
+                    </a>.
+                ]]></tooltip>
+                <type>checkboxes</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Checkboxes</type_class>
+                <options>
+                    <option>
+                        <label>Image</label>
+                        <value>image</value>
+                    </option>
+                    <option>
+                        <label>Spin</label>
+                        <value>spin</value>
+                    </option>
+                    <option>
+                        <label>Zoom</label>
+                        <value>zoom</value>
+                    </option>
+                    <option>
+                        <label>Video</label>
+                        <value>video</value>
+                    </option>
+                </options>
+                <value>image,spin,zoom,video</value>
+                <install/>
+            </field>
+            -->
+            <field>
+                <name>profile</name>
+                <label>Image profile</label>
+                <tooltip><![CDATA[Choose one of your <a class="sirv-open-in-new-window" target="_blank" href="https://my.sirv.com/#/profiles/">profiles</a> if you wish to apply some settings to all images (e.g. watermarks, text overlays, effects). <a class="sirv-open-in-new-window" target="_blank" href="https://sirv.com/help/articles/dynamic-imaging/profiles/">Learn more</a>.]]></tooltip>
+                <type>select</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Select</type_class>
+                <options>
+                    <option>
+                        <label>Default</label>
+                        <value>Default</value>
+                    </option>
+                </options>
+                <value>Default</value>
+                <install/>
+            </field>
+            <field>
+                <name>image_quality</name>
+                <label>Image quality</label>
+                <tooltip><![CDATA[JPEG image quality. The default JPEG image quality is set on your <a class="sirv-open-in-new-window" target="_blank" href="{{URL}}">Adobe Commerce Stores Configuration page</a>.]]></tooltip>
+                <type>select</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Select</type_class>
+                <options>
+                    <option>
+                        <label>Default (Adobe Commerce default)</label>
+                        <value>0</value>
+                    </option>
+                </options>
+                <value>0</value>
+            </field>
+            <field>
+                <name>magento_watermark</name>
+                <label>Use Adobe Commerce watermark</label>
+                <tooltip><![CDATA[Use the standard Adobe Commerce <a class="sirv-open-in-new-window" target="_blank" href="{{URL}}">watermark settings</a> or apply advanced watermarks with a <a class="sirv-open-in-new-window" target="_blank" href="https://my.sirv.com/#/profiles/">Sirv profile</a>.]]></tooltip>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\Switcher</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>true</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>false</value>
+                    </option>
+                </options>
+                <value>true</value>
+                <install/>
+            </field>
+            <field>
+                <name>add_img_width_height</name>
+                <label>Add width/height</label>
+                <tooltip><![CDATA[Try to add missing width/height attributes to <b>img</b> tags.]]></tooltip>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\Switcher</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>true</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>false</value>
+                    </option>
+                </options>
+                <value>false</value>
+                <install/>
+            </field>
+            <field>
+                <name>use_placeholders</name>
+                <label>Use placeholders</label>
+                <tooltip><![CDATA[Use placeholders for images and galleries.]]></tooltip>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\Switcher</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>true</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>false</value>
+                    </option>
+                </options>
+                <value>false</value>
+                <install/>
+            </field>
+        </fields>
+    </group>
+    <group id="sirv_media_viewer">
+        <label>Product page media gallery</label>
+        <fields>
+            <field>
+                <name>product_gallery_view</name>
+                <label>Use Sirv Media Viewer as product gallery</label>
+                <tooltip><![CDATA[Replace your product media gallery viewer with <a class="sirv-open-in-new-window" target="_blank" href="https://sirv.com/help/articles/sirv-media-viewer/">Sirv Media Viewer</a>.]]></tooltip>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\ProductGalleryView</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>smv</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>original</value>
+                    </option>
+                </options>
+                <value>smv</value>
+                <install/>
+            </field>
+            <field>
+                <name>viewer_contents</name>
+                <label>Order of content</label>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios</type_class>
+                <options>
+                    <option>
+                        <label>Sirv assets, then Adobe Commerce images &amp; videos</label>
+                        <value>3</value>
+                    </option>
+                    <option>
+                        <label>Adobe Commerce images &amp; videos, then Sirv assets</label>
+                        <value>2</value>
+                    </option>
+                    <option>
+                        <label>Adobe Commerce images &amp; videos</label>
+                        <value>1</value>
+                    </option>
+                    <option>
+                        <label>Sirv assets only</label>
+                        <value>4</value>
+                    </option>
+                </options>
+                <value>3</value>
+                <install/>
+            </field>
+            <field>
+                <name>product_assets_folder</name>
+                <label>Product folder names on Sirv</label>
+                <tooltip><![CDATA[Location of product assets for <b>Sirv Media Viewer</b>.<br/>Placeholders <b>{product-sku}</b>, <b>{product-id}</b>, <b>{product-sku-2-char}</b> or <b>{product-sku-3-char}</b> can be used here.<br/>e.g. products/{product-sku} <a target="_blank" href="https://sirv.com/help/articles/magento-cdn-sirv-extension/#gallery/">Learn more</a>.]]></tooltip>
+                <notice><![CDATA[Folder structure on Sirv e.g. products/{product-sku}]]></notice>
+                <type>text</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Folder</type_class>
+                <value>products/{product-sku}</value>
+                <install/>
+            </field>
+            <field>
+                <name>copy_primary_images_to_magento</name>
+                <label>Get primary images from Sirv</label>
+                <type>button</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Button\CopyPrimaryImages</type_class>
+                <value>Copy primary images to Adobe Commerce</value>
+            </field>
+            <field>
+                <name>smv_js_options</name>
+                <label>Sirv Media Viewer options</label>
+                <notice><![CDATA[<a target="_blank" class="sirv-open-in-new-window" href="https://sirv.com/help/viewer/">Choose your options here</a>, then paste the code from the Script tab.]]></notice>
+                <type>textarea</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Textarea</type_class>
+                <value>SirvOptions = {&#xa;  viewer: {&#xa;    zoom: {&#xa;      mode: 'inner',&#xa;    }&#xa;  }&#xa;}</value>
+            </field>
+            <field>
+                <name>image_zoom</name>
+                <label>Image zoom</label>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\Switcher</type_class>
+                <options>
+                    <option>
+                        <label>Enabled</label>
+                        <value>enabled</value>
+                    </option>
+                    <option>
+                        <label>Disabled</label>
+                        <value>disabled</value>
+                    </option>
+                </options>
+                <value>enabled</value>
+            </field>
+            <field>
+                <name>slides_order</name>
+                <label>Gallery items order</label>
+                <type>slides_order</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\SlidesOrder</type_class>
+                <options>
+                    <option>
+                        <label>Spin</label>
+                        <value>spin</value>
+                    </option>
+                    <option>
+                        <label>Video</label>
+                        <value>video</value>
+                    </option>
+                    <option>
+                        <label>Zoom</label>
+                        <value>zoom</value>
+                    </option>
+                    <option>
+                        <label>Image</label>
+                        <value>image</value>
+                    </option>
+                </options>
+                <value></value>
+            </field>
+            <field>
+                <name>pinned_items</name>
+                <label>Pin gallery items</label>
+                <type>pinned_items</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\PinnedItems</type_class>
+                <value>{"videos":"no","spins":"no","images":"no","mask":""}</value>
+                <install/>
+            </field>
+            <field>
+                <name>smv_max_height</name>
+                <label>Max height</label>
+                <type>text</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Text</type_class>
+                <tooltip><![CDATA[Maximum height of gallery & thumbnails. Leave empty to make it responsive.]]></tooltip>
+                <value></value>
+            </field>
+            <field>
+                <name>smv_custom_css</name>
+                <label>Custom CSS</label>
+                <notice><![CDATA[Add styles to fix any rendering conflicts caused by other CSS.]]></notice>
+                <type>textarea</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Textarea</type_class>
+                <value></value>
+            </field>
+            <field>
+                <name>assets_cache</name>
+                <label>Product gallery cache</label>
+                <type>button</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\AdvancedButton\FlushAssets</type_class>
+                <notice><![CDATA[<a href="#" data-mage-init='{"sirvAssets": {"assetsUrl":"{{URL}}"}}'>View assets</a>]]></notice>
+            </field>
+            <field>
+                <name>assets_cache_ttl</name>
+                <label>Sirv content cache TTL</label>
+                <notice><![CDATA[Time when cached content expires. Choose a shorter duration if your images change frequently.]]></notice>
+                <type>select</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Select</type_class>
+                <options>
+                    <option>
+                        <label>No caching</label>
+                        <value>0</value>
+                    </option>
+                    <option>
+                        <label>15 minutes</label>
+                        <value>15</value>
+                    </option>
+                    <option>
+                        <label>1 hour</label>
+                        <value>60</value>
+                    </option>
+                    <option>
+                        <label>3 hours</label>
+                        <value>180</value>
+                    </option>
+                    <option>
+                        <label>12 hours</label>
+                        <value>720</value>
+                    </option>
+                    <option>
+                        <label>1 day (default)</label>
+                        <value>1440</value>
+                    </option>
+                    <option>
+                        <label>7 days</label>
+                        <value>10080</value>
+                    </option>
+                    <option>
+                        <label>1 month</label>
+                        <value>43200</value>
+                    </option>
+                </options>
+                <value>1440</value>
+                <install/>
+            </field>
+        </fields>
+    </group>
+    <group id="support">
+        <label>Support</label>
+        <fields>
+            <field>
+                <name>join_with_mysql</name>
+                <label>Join data with MySQL</label>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>true</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>false</value>
+                    </option>
+                </options>
+                <tooltip><![CDATA[Yes - more complex SQL queries are used, MySQL server load increases.<br/><br/>No - simpler SQL queries are used, data is joining using PHP.]]></tooltip>
+                <value>false</value>
+            </field>
+            <field>
+                <name>validate</name>
+                <label>Validate cache</label>
+                <type>validator</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Validator</type_class>
+            </field>
+            <field>
+                <name>custom_sync</name>
+                <label>Sync product media</label>
+                <type>custom_sync</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\CustomSync</type_class>
+            </field>
+        </fields>
+    </group>
+    <group id="synchronization">
+        <label>Synchronization</label>
+        <fields>
+            <field>
+                <name>how_sync_works</name>
+                <label>How sync works</label>
+                <type>label</type>
+                <notice><![CDATA[
+                    <div class="row sync-description-label">
+                    Sirv automatically copies product images to your Sirv account upon first request. <a href="https://sirv.com/help/articles/magento-cdn-sirv-extension/#sync" target="_blank" class="sirv-open-in-new-window">Learn more</a>.<br/><br/>
+                    It is also possible to pre-sync images via the "Sync Media Gallery" button below.
+                    </div>
+                    <div class="row approximate-storage-size-label">Estimated storage of your media gallery: <span class="approximate-storage-size"><div class="spinner"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></span></div>
+                ]]></notice>
+                <value></value>
+            </field>
+            <field>
+                <name>delete_cached_images</name>
+                <label>Delete cached images during sync</label>
+                <type>radios</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Radios\Switcher</type_class>
+                <options>
+                    <option>
+                        <label>Yes</label>
+                        <value>true</value>
+                    </option>
+                    <option>
+                        <label>No</label>
+                        <value>false</value>
+                    </option>
+                </options>
+                <tooltip><![CDATA[
+                    Save disk space by deleting the many resized images generated by the Adobe Commerce product image cache. Sirv does not require them.
+                    <br/><br/>
+                    If required, you can regenerate the Adobe Commerce image cache with the Adobe Commerce CLI command: <b>php bin/magento catalog:images:resize</b>
+                ]]></tooltip>
+                <notice><![CDATA[
+                    Your Adobe Commerce cache contains {{COUNT}} resized image{{SUFFIX}}.
+                    <a href="#"
+                        onclick="return false"
+                        data-mage-init='{
+                            "sirvButton": {
+                                "showLoader": true,
+                                "needConfirmation": true,
+                                "confirmationMessage": "
+                                    <b>Delete {{COUNT}} resized Adobe Commerce image{{SUFFIX}}?</b><br/>
+                                    This might take a long time.<br/>
+                                    Keep this page open until deletion is complete.",
+                                "confirmationButtonText": "Empty image cache",
+                                "event": "sirv-sync",
+                                "target": "[data-role=sirv-synchronizer]",
+                                "eventData": {
+                                    "action": "flush-magento-images-cache",
+                                    "actionUrl": "{{URL}}"
+                                }
+                            }
+                        }'
+                        title="Delete pregenerated product images files"
+                        >Delete cache...</a>
+                ]]></notice>
+                <value>false</value>
+            </field>
+            <field>
+                <name>synchronizer</name>
+                <label>Sync status</label>
+                <type>synchronizer</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Synchronizer</type_class>
+            </field>
+            <!--
+            <field>
+                <name>urls_cache</name>
+                <label>Synchronized image cache</label>
+                <type>button</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\AdvancedButton\FlushUrls</type_class>
+            </field>
+            -->
+            <field>
+                <name>http_auth</name>
+                <label>HTTP authentication</label>
+                <type>checkboxes</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Checkboxes\HttpAuth</type_class>
+                <options>
+                    <option>
+                        <label>Enable</label>
+                        <value>yes</value>
+                    </option>
+                </options>
+                <value>no</value>
+                <notice><![CDATA[For staging/testing sites that require HTTP authentication.]]></notice>
+            </field>
+            <field>
+                <name>http_auth_user</name>
+                <label>User</label>
+                <type>text</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Text</type_class>
+                <placeholder>Your username</placeholder>
+                <autocomplete>off</autocomplete>
+                <value></value>
+            </field>
+            <field>
+                <name>http_auth_pass</name>
+                <label>Password</label>
+                <type>password</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Password</type_class>
+                <placeholder>Your password</placeholder>
+                <autocomplete>off</autocomplete>
+                <value></value>
+            </field>
+        </fields>
+    </group>
+    <group id="usage">
+        <label>Usage</label>
+        <fields>
+            <field>
+                <name>usage</name>
+                <type>usage</type>
+                <type_class>\Sirv\Magento2\Block\Adminhtml\Settings\Edit\Form\Element\Usage</type_class>
+            </field>
+        </fields>
+    </group>
+</settings>

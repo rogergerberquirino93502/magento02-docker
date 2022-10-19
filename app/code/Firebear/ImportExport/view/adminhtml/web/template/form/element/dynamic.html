@@ -1,0 +1,79 @@
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<div class="admin__field" visible="visible" disable="disabled" css="element.setClasses(element)">
+    <label if="element.label" class="admin__field-label" attr="for: element.uid">
+        <span translate="element.label"></span>
+    </label>
+
+    <div class="admin__field-control" data-role="grid-wrapper" attr="'data-index': index">
+        <div class="admin__control-table-wrapper">
+            <table class="admin__dynamic-rows admin__control-table" data-role="grid" attr="{'data-index': index}">
+                <thead if="element.columnsHeader">
+                    <tr>
+                        <th if="dndConfig.enabled"></th>
+                        <th repeat="foreach: labels, item: '$label'"
+                            css="setClasses($label())"
+                            visible="$label().visible"
+                            disable="$label().disabled">
+                            <span translate="$label().label"></span>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="data-row" repeat="foreach: elems, item: '$record'">
+                        <td if="dndConfig.enabled"
+                            class="col-draggable"
+                            template="name: dndConfig.template, data: dnd"></td>
+
+                    <!-- ko foreach: { data: $record().elems(), as: 'elem'}  -->
+                    <td if="elem.template"
+                        css="$parent.setClasses(elem)"
+                        visible="elem.visible"
+                        disable="elem.disabled"
+                        template="elem.template"></td>
+                    <!-- /ko -->
+                </tr>
+                </tbody>
+
+                <tfoot visible="element.addButton || (!!element.getRecordCount() && (element.pages() > 1))">
+                    <tr>
+                        <td attr="{'colspan': element.getColumnsCount()}"
+                            visible="element.addButton || pages() > 1">
+                            <button if="element.addButton"
+                                    attr="{disabled: disabled, 'data-action': 'add_new_row'}"
+                                    type="button"
+                                    click="processingAddOrigChild.bind($data, false, false, false)">
+                                <span translate="addButtonLabel"></span>
+                            </button>
+                            <button if="element.addCustom"
+                                    attr="{disabled: disabled, 'data-action': 'add_custom_row'}"
+                                    type="button"
+                                    click="processingAddCustomChild.bind($data, false, false, false)">
+                                <span translate="addCustomLabel"></span>
+                            </button>
+                            <button if="element.addReset"
+                                    attr="{disabled: disabled}"
+                                    type="button"
+                                    click="deleteRecords">
+                                <span translate="addResetLabel"></span>
+                            </button>
+                            <div class="admin__control-table-pagination" visible="!!element.getRecordCount() && element.pages() > 1">
+                                <div class="admin__data-grid-pager">
+                                    <button class="action-previous" type="button" data-bind="attr: {title: $t('Previous Page')}, click: previousPage, disable: isFirst()"></button>
+                                    <input class="admin__control-text" type="number" data-bind="attr: {id: ++ko.uid}, value: currentPage">
+                                    <label class="admin__control-support-text" data-bind="attr: {for: ko.uid}, text: 'of ' + pages()"></label>
+                                    <button class="action-next" type="button" data-bind="attr: {title: $t('Next Page')}, click: nextPage, disable: isLast()"></button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

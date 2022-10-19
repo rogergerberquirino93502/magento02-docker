@@ -1,0 +1,7 @@
+<config>
+    <router id="admin">
+        <route id="micatalogo" frontName="micatalogo">
+            <module name="MaxiCompra_Blog" />
+        </route>
+    </router>
+</config>

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Firebear_ImportExport:etc/di_export.xsd">
+    <entity name="order" label="Order" model="Firebear\ImportExport\Model\Export\Order">
+        <item name="sales_order" label="Order" model="\Magento\Sales\Model\Order" main_field="entity_id">
+            <field name="status" type="select" model="\Firebear\ImportExport\Model\Export\Order\Fields\Status\Options"/>
+            <field name="store_id" type="select" model="\Firebear\ImportExport\Model\Export\Order\Fields\StoreId\Options"/>
+            <field name="store_currency_code" type="select" model="\Magento\Config\Model\Config\Source\Locale\Currency"/>
+            <field name="customer_group" type="select" model="\Firebear\ImportExport\Model\Source\Config\CustomerGroup"/>
+        </item>
+        <item name="sales_order_item" label="Items of Order" model="\Magento\Sales\Model\Order\Item" parent="sales_order" parent_field="order_id" main_field="item_id">
+            <field name="product_type" type="select" model="\Magento\Catalog\Model\Product\Type"/>
+        </item>
+        <item name="sales_order_product" label="Products of Order" model="\Magento\Catalog\Model\Product" parent="sales_order_item" parent_field="product_id" main_field="entity_id"/>
+        <item name="sales_order_address" label="Addresses" model="\Magento\Sales\Model\Order\Address" parent="sales_order" parent_field="parent_id" main_field="entity_id">
+            <field name="country_id" type="select" model="\Magento\Directory\Model\Config\Source\Country"/>
+            <field name="address_type" type="select" model="\Firebear\ImportExport\Model\Export\Order\Address\Fields\AddressType\Options"/>
+        </item>
+        <item name="sales_order_payment" label="Payments" model="\Magento\Sales\Model\Order\Payment" parent="sales_order" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_payment_transaction" label="Payments Transaction" model="\Magento\Sales\Model\Order\Payment\Transaction" parent="sales_order_payment" parent_field="payment_id" main_field="transaction_id"/>
+        <item name="sales_shipment" label="Shipments" model="\Magento\Sales\Model\Order\Shipment" parent="sales_order" parent_field="order_id" main_field="entity_id"/>
+        <item name="sales_shipment_item" label="Item of Shipment" model="\Magento\Sales\Model\Order\Shipment\Item" parent="sales_shipment" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_shipment_comment" label="Comments of Shipment" model="\Magento\Sales\Model\Order\Shipment\Comment" parent="sales_shipment" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_shipment_track" label="Tracks of Shipment" model="\Magento\Sales\Model\Order\Shipment\Track" parent="sales_shipment" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_invoice" label="Invoices" model="\Magento\Sales\Model\Order\Invoice" parent="sales_order" parent_field="order_id" main_field="entity_id"/>
+        <item name="sales_invoice_item" label="Item of Invoice" model="\Magento\Sales\Model\Order\Invoice\Item" parent="sales_invoice" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_invoice_comment" label="Comments of Invoice" model="\Magento\Sales\Model\Order\Invoice\Comment" parent="sales_invoice" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_creditmemo" label="Credit Memos" model="\Magento\Sales\Model\Order\Creditmemo" parent="sales_order" parent_field="order_id" main_field="entity_id"/>
+        <item name="sales_creditmemo_item" label="Items of Credit Memo" model="\Magento\Sales\Model\Order\Creditmemo\Item" parent="sales_creditmemo" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_creditmemo_comment" label="Comments of Credit Memo" model="\Magento\Sales\Model\Order\Creditmemo\Comment" parent="sales_creditmemo" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_order_status_history" label="Status History" model="\Magento\Sales\Model\Order\Status\History" parent="sales_order" parent_field="parent_id" main_field="entity_id"/>
+        <item name="sales_order_tax" label="Tax" model="\Magento\Sales\Model\Order\Tax" parent="sales_order" parent_field="order_id" main_field="tax_id"/>
+        <item name="sales_order_tax_item" label="Tax Items" model="\Magento\Sales\Model\Order\Tax\Item" parent="sales_order_tax" parent_field="tax_id" main_field="tax_id"/>
+        <item name="customer_entity" label="Customer" model="Magento\Customer\Model\Customer" parent="sales_order" parent_field="entity_id" main_field="entity_id"/>
+    </entity>
+    <entity name="catalog_product" label="Products" model="Firebear\ImportExport\Model\Export\Product"/>
+    <entity name="catalog_category" label="Categories" model="Firebear\ImportExport\Model\Export\Category"/>
+    <entity name="cms_page" label="CMS Page" model="Firebear\ImportExport\Model\Export\CmsPage"/>
+    <entity name="cms_block" label="CMS Block" model="Firebear\ImportExport\Model\Export\CmsBlock"/>
+    <entity name="attribute" label="Attribute" model="Firebear\ImportExport\Model\Export\Attribute"/>
+    <entity name="advanced_pricing" label="Advanced Pricing" model="Firebear\ImportExport\Model\Export\AdvancedPricing"/>
+    <entity name="customer" label="Customers" model="Firebear\ImportExport\Model\Export\Customer"/>
+    <entity name="customer_address" label="Customer Addresses" model="Firebear\ImportExport\Model\Export\Address"/>
+    <entity name="url_rewrite" label="Url Rewrite" model="Firebear\ImportExport\Model\Export\UrlRewrite"/>
+    <entity name="search_query" label="Search Terms" model="Firebear\ImportExport\Model\Export\SearchTerms"/>
+    <entity name="search_synonyms" label="Search Synonyms" model="Firebear\ImportExport\Model\Export\SearchSynonyms"/>
+    <entity name="widget" label="Widget" model="Firebear\ImportExport\Model\Export\Widget"/>
+    <entity name="review" label="Review" model="Firebear\ImportExport\Model\Export\Review"/>
+    <entity name="sales_rule" label="Cart Price Rules" model="Firebear\ImportExport\Model\Export\SalesRule"/>
+    <entity name="catalog_rule" label="Catalog Rule" model="Firebear\ImportExport\Model\Export\CatalogRule"/>
+    <entity name="newsletter_subscriber" label="Newsletter Subscriber" model="Firebear\ImportExport\Model\Export\NewsletterSubscriber"/>
+    <entity name="import_jobs" label="Import Jobs" model="Firebear\ImportExport\Model\Export\ImportJobs"/>
+    <entity name="export_jobs" label="Export Jobs" model="Firebear\ImportExport\Model\Export\ExportJobs"/>
+</config>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="maxicompra_blog_post_detail_view">
+        <observer name="maxicompra_blog_observer_log_post_detail_view" 
+        instance="MaxiCompra\Blog\Observer\LogPostDetailView" />
+    </event>
+</config>

@@ -1,0 +1,30 @@
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+
+<div tabindex="0" class="selectize" data-bind="event: {
+            focusin: onFocusIn,
+            focusout: onFocusOut
+        },
+           outerClick: outerClick.bind($data)">
+    <span class="value" data-bind="attr: {id: uid}, html:value, valueUpdate: valueUpdate, css: {_active: multiselectFocus},
+            click: function(data, event) {
+                toggleListVisible(data, event)
+            }"></span>
+    <div class="list" data-bind="css: { _active: listVisible }">
+        <div class="filter">
+        <input type="text" placeholder="Filter options..." data-bind="value:search, valueUpdate:valueUpdate"/>
+        </div>
+        <ul tabindex="2" data-bind="foreach: { data: getList(), as: 'item' }">
+            <li data-bind="text: item.value, click: function(value){ $parent.changeValue(value, $parent); },
+             click: function(data, event){
+                            $parent.toggleOptionSelected($data, $index(), event);
+                        },
+                        clickBubble: false,
+                        style: {display:item.visible}"></li>
+    </ul>
+    </div>
+</div>

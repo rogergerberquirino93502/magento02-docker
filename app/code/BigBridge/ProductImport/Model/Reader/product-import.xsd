@@ -23,6 +23,7 @@
 	<xs:element name="manufacturer" type="xs:string"/>
     <xs:element name="social_quantity" type="xs:string"/>
     <xs:element name="social_like" type="xs:string"/>
+    <xs:element name="social_beings" type="xs:string"/>
 	<xs:element name="country_of_manufacture" type="xs:string"/>
 	<xs:element name="color" type="xs:string"/>
 	<xs:element name="item" type="xs:string"/>
@@ -77,6 +78,7 @@
 				<xs:element ref="manufacturer" minOccurs="0"/>
                 <xs:element ref="social_quantity" minOccurs="0"/>
                 <xs:element ref="social_like" minOccurs="0"/>
+                <xs:element ref="social_beings" minOccurs="0"/>
 				<xs:element ref="country_of_manufacture" minOccurs="0"/>
 				<xs:element ref="color" minOccurs="0"/>
 				<xs:element ref="url_key" minOccurs="0"/>
@@ -131,6 +133,7 @@
 				<xs:element ref="manufacturer" minOccurs="0"/>
                 <xs:element ref="social_quantity" minOccurs="0"/>
                 <xs:element ref="social_like" minOccurs="0"/>
+                <xs:element ref="social_beings" minOccurs="0"/>
 				<xs:element ref="country_of_manufacture" minOccurs="0"/>
                 <xs:element ref="manufacturer" minOccurs="0"/>
                 <xs:element ref="country_of_manufacture" minOccurs="0"/>

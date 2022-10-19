@@ -1,0 +1,155 @@
+{
+    "firebear_export_jobs": {
+        "column": {
+            "entity_id": true,
+            "title": true,
+            "is_active": true,
+            "cron": true,
+            "frequency": true,
+            "entity": true,
+            "behavior_data": true,
+            "export_source": true,
+            "source_data": true,
+            "file_updated_at": true,
+            "xslt": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "firebear_import_jobs": {
+        "column": {
+            "entity_id": true,
+            "title": true,
+            "is_active": true,
+            "cron": true,
+            "frequency": true,
+            "entity": true,
+            "behavior_data": true,
+            "import_source": true,
+            "source_data": true,
+            "file_updated_at": true,
+            "mapping": true,
+            "price_rules": true,
+            "xslt": true,
+            "translate_from": true,
+            "translate_to": true,
+            "position": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "firebear_import_job_mapping": {
+        "column": {
+            "entity_id": true,
+            "job_id": true,
+            "attribute_id": true,
+            "special_attribute": true,
+            "import_code": true,
+            "default_value": true,
+            "custom": true,
+            "position": true
+        },
+        "index": {
+            "FIREBEAR_IMPORT_JOB_MAPPING_JOB_ID": true,
+            "FIREBEAR_IMPORT_JOB_MAPPING_ATTRIBUTE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FIREBEAR_IMPORT_JOB_MAPPING_JOB_ID_FIREBEAR_IMPORT_JOBS_ENTT_ID": true,
+            "FIREBEAR_IMPORT_JOB_MAPPING_ATTR_ID_EAV_ATTR_ATTR_ID": true,
+            "FIREBEAR_IMPORT_JOB_MAPPING_JOB_ID_ATTRIBUTE_ID": true
+        }
+    },
+    "firebear_import_history": {
+        "column": {
+            "history_id": true,
+            "job_id": true,
+            "started_at": true,
+            "finished_at": true,
+            "type": true,
+            "file": true,
+            "db_log_storage": true,
+            "log_content": true
+        },
+        "index": {
+            "FIREBEAR_IMPORT_HISTORY_HISTORY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FIREBEAR_IMPORT_HISTORY_JOB_ID_FIREBEAR_IMPORT_JOBS_ENTITY_ID": true
+        }
+    },
+    "firebear_export_history": {
+        "column": {
+            "history_id": true,
+            "job_id": true,
+            "started_at": true,
+            "finished_at": true,
+            "type": true,
+            "file": true,
+            "temp_file": true,
+            "is_moved": true,
+            "db_log_storage": true,
+            "log_content": true
+        },
+        "index": {
+            "FIREBEAR_EXPORT_HISTORY_HISTORY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FIREBEAR_EXPORT_HISTORY_JOB_ID_FIREBEAR_EXPORT_JOBS_ENTITY_ID": true
+        }
+    },
+    "firebear_importexport_importdata": {
+        "column": {
+            "id": true,
+            "entity": true,
+            "behavior": true,
+            "subentity": true,
+            "file": true,
+            "job_id": true,
+            "data": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_9AF4AC7F682E8FAAE2A91E723745CB33": true
+        }
+    },
+    "firebear_export_jobs_event": {
+        "column": {
+            "job_id": true,
+            "event": true
+        },
+        "index": {
+            "FIREBEAR_EXPORT_JOBS_EVENT_EVENT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FIREBEAR_EXPORT_JOBS_EVENT_JOB_ID_FIREBEAR_EXPORT_JOBS_ENTITY_ID": true
+        }
+    },
+    "firebear_import_job_replacing": {
+        "column": {
+            "entity_id": true,
+            "job_id": true,
+            "attribute_code": true,
+            "target": true,
+            "is_case_sensitive": true,
+            "find": true,
+            "entity_type": true,
+            "replace": true
+        },
+        "index": {
+            "FIREBEAR_IMPORT_JOB_REPLACING_JOB_ID": true,
+            "FIREBEAR_IMPORT_JOB_REPLACING_ATTRIBUTE_CODE": true,
+            "FIREBEAR_IMPORT_JOB_REPLACING_TARGET": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_C59A17FB25B401C75D489A189674AE0F": true,
+            "FIREBEAR_IMPORT_JOB_REPLACING_JOB_ID_ATTRIBUTE_CODE_ENTITY_TYPE": true
+        }
+    }
+}

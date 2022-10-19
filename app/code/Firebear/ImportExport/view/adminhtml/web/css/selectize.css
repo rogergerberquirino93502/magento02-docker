@@ -1,0 +1,98 @@
+.selectize {
+    position: relative;
+    outline: none;
+}
+
+.selectize .value {
+    display: block;
+    position: relative;
+    min-width: 80px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+    border: 1px solid #adadad;
+    border-radius: 1px;
+    padding: 4px;
+    color: #303030;
+    background-color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    height: 33px;
+    padding-right: 44px;
+    cursor:pointer;
+}
+/*
+div.filter span{
+    width:50%;
+    border-bottom:1px solid #303030;
+}*/
+.selectize .value::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin: -2px 10px;
+    width: 0px;
+    height: 0px;
+    content: "";
+    border-width: 4px;
+    border-style: solid;
+    border-color: #000 transparent transparent;
+}
+
+.selectize input {
+    width:100%;
+}
+.selectize .list {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 0;
+    background: #fff;
+    opacity: 0;
+    outline: none;
+    -webkit-box-shadow: 0px 2px 9px rgba(0,0,0,0.35);
+    box-shadow: 0px 2px 9px rgba(0,0,0,0.35);
+    overflow: hidden;
+    -webkit-transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: opacity 0.25s cubic-bezier(0.39, 0.575, 0.565, 1);
+    z-index: 9999;
+}
+/*
+.selectize:hover .list{
+    height: auto;
+    opacity: 1.0;
+}*/
+
+.selectize .list._active {
+    height: auto;
+    opacity: 1.0;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+selectize .list ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.selectize .list ul li {
+    list-style: none;
+ /*   font-family: helvetica,arial,sans-serif;
+    font-size: 12px;*/
+    color: #1f202a;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+.selectize .list ul li:hover {
+    background: #514943;
+    color:#fff;
+}
+.admin__control-table-wrapper
+{
+    overflow: visible;
+}
+
+.admin__control-table tbody td {
+    vertical-align: bottom;
+}

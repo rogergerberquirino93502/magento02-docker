@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="component" xsi:type="string">Firebear_ImportExport/js/form/form</item>
+            <item name="provider" xsi:type="string">import_export_job_form.export_job_form_data_source</item>
+            <item name="deps" xsi:type="string">import_export_job_form.export_job_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">import_export_job_form</item>
+            <item name="nameModal" xsi:type="string">run_export</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Firebear\ImportExport\Block\Adminhtml\Export\Job\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Firebear\ImportExport\Block\Adminhtml\Export\Job\Edit\DeleteButton</item>
+            <item name="duplicate" xsi:type="string">Firebear\ImportExport\Block\Adminhtml\Export\Job\Edit\DuplicateButton</item>
+            <item name="save" xsi:type="string">Firebear\ImportExport\Block\Adminhtml\Export\Job\Edit\SaveButton</item>
+            <item name="view_history" xsi:type="string">Firebear\ImportExport\Block\Adminhtml\Export\Job\Edit\ViewButton</item>
+            <item name="save_and_run" xsi:type="string">Firebear\ImportExport\Block\Adminhtml\Export\Job\Edit\RunButton</item>
+            <item name="save_and_continue" xsi:type="string">Firebear\ImportExport\Block\Adminhtml\Export\Job\Edit\SaveAndContinueButton</item>
+        </item>
+    </argument>
+    <dataSource name="export_job_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Firebear\ImportExport\Model\ExportJob\DataProvider</argument>
+            <argument name="name" xsi:type="string">export_job_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="import/export_job/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General Settings</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="dataScope" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Enable Job</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">is_active</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Job Title</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataScope" xsi:type="string">title</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="frequency">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Frequency\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/frequency-select</item>
+                    <item name="elementTmpl" xsi:type="string">Firebear_ImportExport/form/element/frequency-select</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Frequency</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="dataScope" xsi:type="string">frequency</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="cron_groups">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Cron\GroupOptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Cron Group</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">35</item>
+                    <item name="dataScope" xsi:type="string">cron_groups</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="default" xsi:type="string">firebear_importexport</item>
+                </item>
+            </argument>
+        </field>
+        <field name="cron">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Cron\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/cron</item>
+                    <item name="elementTmpl" xsi:type="string">Firebear_ImportExport/form/element/cron</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Cron Schedule</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="dataScope" xsi:type="string">cron</item>
+                    <item name="notice" xsi:type="string">↑ Use this field if you have good cron knowledge.</item>
+                </item>
+            </argument>
+        </field>
+        <field name="event">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Events</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="dataScope" xsi:type="string">event</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            Select a Magento 2 event to automatically run export jobs upon its trigger.
+                        </item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Firebear\ImportExport\Model\Source\Config\Event</item>
+            </argument>
+        </field>
+        <field name="language">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Locale\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Locale</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">import</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="dataScope" xsi:type="string">language</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="default" xsi:type="string">en_US</item>
+                </item>
+            </argument>
+        </field>
+        <field name="divided_additional">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Divide Additional Attributes</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">import</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="dataScope" xsi:type="string">divided_additional</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            Additional attributes will be split into the separate columns.
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="settings">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">Export Settings</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+                <item name="opened" xsi:type="boolean">true</item>
+            </item>
+        </argument>
+        <field name="use_api">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Use API</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">import</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="dataScope" xsi:type="string">use_api</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="entity">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Export\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/additional-select</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Entity</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">entity</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="enable_last_entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Consecutive Export</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataScope" xsi:type="string">enable_last_entity_id</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            After the selected entity is exported, every consecutive export job run will only export the entities added since the latest job run.
+                        </item>
+                    </item>
+                    <item name="notice" xsi:type="string">Export only new items after latest job execution</item>
+                </item>
+            </argument>
+        </field>
+        <field name="last_entity_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="disabled" xsi:type="string">true</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">last_entity_id</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="label" xsi:type="string" translate="true">Last Entity Id</item>
+                    <!--<item name="visible" xsi:type="boolean">true</item>-->
+                    <!--<item name="imports" xsi:type="array">-->
+                    <!--<item name="toggleVisibility" xsi:type="string">-->
+                    <!--${$.ns}.${$.ns}.source_data_map_container.enable_last_entity_id:value-->
+                    <!--</item>-->
+                    <!--</item>-->
+                    <!--<item name="additionalClasses" xsi:type="array">-->
+                    <!--<item name="_hidden" xsi:type="boolean">true</item>-->
+                    <!--</item>-->
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="behavior_stores">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Firebear_ImportExport/js/components/visible-on-options/fieldset</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">Store Filter</item>
+                <item name="sortOrder" xsi:type="number">25</item>
+                <item name="valuesForOptions" xsi:type="array">
+                    <item name="catalog_product" xsi:type="string">catalog_product</item>
+                    <item name="catalog_category" xsi:type="string">catalog_category</item>
+                </item>
+            </item>
+        </argument>
+        <field name="only_admin">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Only Admin Values</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">only_admin</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            Only products and categories with default store view values will be exported.
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_store_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/multiselect-store</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">50</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_store_ids</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">
+                            ${$.parentName}.only_admin:value
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="behavior" class="Firebear\ImportExport\Ui\Component\Form\ExportFieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Firebear_ImportExport/js/components/visible-on-options/fieldset</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">Export Behavior</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+            </item>
+        </argument>
+        <field name="behavior_field_file_format">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\FileFormat\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/file-format</item>
+                    <item name="elementTmpl" xsi:type="string">Firebear_ImportExport/form/element/file_format</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">File Format</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_file_format</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">
+                            ${$.ns}.${$.ns}.settings.entity:value
+                        </item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_separator">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/dep-separator-file</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Field Separator</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_separator</item>
+                    <item name="default" xsi:type="string">,</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="max_text_length" xsi:type="string">1</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">
+                            ${$.parentName}.behavior_field_file_format:value
+                        </item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="csv" xsi:type="string">file</item>
+                        <item name="txt" xsi:type="string">txt</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_multiple_value_separator">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/dep-file</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Multiple value separator</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_multiple_value_separator</item>
+                    <item name="default" xsi:type="string">,</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="max_text_length" xsi:type="string">1</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.parentName}.behavior_field_file_format:value</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="csv" xsi:type="string">csv</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_enclosure">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/dep-file</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Field Enclosure</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_enclosure</item>
+                    <item name="default" xsi:type="string">"</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="max_text_length" xsi:type="string">1</item>
+                    </item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.parentName}.behavior_field_file_format:value</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="csv" xsi:type="string">csv</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_export_by_page">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/single-checkbox</item>
+                    <item name="template" xsi:type="string">Firebear_ImportExport/form/element/switcher</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Export page by page</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">35</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_export_by_page</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.parentName}.behavior_field_file_format:value</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="csv" xsi:type="string">csv</item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            Defines if export job should process entities in batches of ‘Page size’ value.
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_page_size">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/dep-file</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Page size</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">36</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_page_size</item>
+                    <item name="imports" xsi:type="array">
+                        <item name="toggleVisibility" xsi:type="string">${$.parentName}.behavior_field_file_format:value</item>
+                    </item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="csv" xsi:type="string">csv</item>
+                    </item>
+                    <item name="tooltip" xsi:type="array">
+                        <item name="description" xsi:type="string" translate="true">
+                            Defines how many entities at once should export job process.
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_archive_after_export">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/single-checkbox</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Archive File After Export</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_archive_after_export</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="number">0</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${$.parentName}.behavior_field_archive_before_run</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="number">1</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">${$.parentName}.behavior_field_archive_before_run</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="behavior_field_archive_before_run">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/single-checkbox</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Archive File Before Consecutive Run</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">41</item>
+                    <item name="dataScope" xsi:type="string">behavior_field_archive_before_run</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="source" class="Firebear\ImportExport\Ui\Component\Form\ExportFieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Firebear_ImportExport/js/components/visible-on-options/fieldset</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="label" xsi:type="string" translate="true">Export Source</item>
+                <item name="sortOrder" xsi:type="number">40</item>
+            </item>
+        </argument>
+        <field name="export_source_entity" class="Firebear\ImportExport\Ui\Component\Form\ExportField">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\ExportSource\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/additional-select-export-source</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Export Source</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">export_source_entity</item>
+                    <item name="valueUpdate" xsi:type="string">afterkeydown</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <button name="check_button" class="Magento\Ui\Component\Container">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/components/button-connect</item>
+                    <item name="title" xsi:type="string">Check Connection</item>
+                    <item name="loadmapUrl" xsi:type="url" path="import/export_job/check"/>
+                    <item name="sortOrder" xsi:type="number">250</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="valuesForOptions" xsi:type="array">
+                        <item name="ftp" xsi:type="string">ftp</item>
+                        <item name="sftp" xsi:type="string">sftp</item>
+                    </item>
+                </item>
+            </argument>
+        </button>
+    </fieldset>
+    <fieldset name="source_data_map_container" class="Firebear\ImportExport\Ui\Component\Form\ExportFieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">
+                    Firebear_ImportExport/js/components/visible-on-options/fieldset
+                </item>
+                <item name="label" xsi:type="string" translate="true">Map Attributes</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">50</item>
+                <item name="visible" xsi:type="boolean">false</item>
+                <item name="imports" xsi:type="array">
+                    <item name="toggleVisibilityByEntityValue" xsi:type="string">
+                        ${$.parentName}.settings.entity:value
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <field name="source_data_count">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">Only fields from Mapping</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">source_data_count</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+        <!--        <dynamicRows name="source_data_map" component="Firebear_ImportExport/js/form/element/dynamic-rows">-->
+        <dynamicRows name="source_data_map">
+            <settings>
+                <addButtonLabel translate="true">Add New</addButtonLabel>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <componentType>dynamicRows</componentType>
+                <pageSize>10</pageSize>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">true</param>
+                    <param name="component" xsi:type="string">Firebear_ImportExport/js/components/dynamic-rows/dnd</param>
+                </dndConfig>
+                <label translate="true">
+                    <![CDATA[
+                        Mapping feature allows you to set the
+                        conformity between custom data structure and Magento 2 fields. Entity - source of system
+                        attribute; System Attribute - select system attributes that should be mapped to custom
+                        attributes; Export Attributes - specify custom attributes; DefaultValued - add hardcoded values
+                        if necessary.
+                    ]]>
+                </label>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+
+                <field name="source_data_entity" class="Firebear\ImportExport\Ui\Component\Form\System\Field" component="Firebear_ImportExport/js/form/element/export-mappings/select-entity" sortOrder="20" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="source_options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Types\Options</item>
+                        <item name="config" xsi:type="array">
+                            <item name="prefixName" xsi:type="string">source_data_system.entity</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>string</dataType>
+                        <label translate="true">Entity</label>
+                        <dataScope>source_data_entity</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options class="Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Types\Options"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+
+                <field name="source_data_system" class="Firebear\ImportExport\Ui\Component\Form\System\Field" component="Firebear_ImportExport/js/form/element/export-mappings/select-system-attr" sortOrder="30" formElement="select">
+                    <argument name="data" xsi:type="array">
+                        <item name="source_options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Options</item>
+                        <item name="config" xsi:type="array">
+                            <item name="prefixName" xsi:type="string">source_data_system.value</item>
+                            <item name="ajaxUrl" xsi:type="url" path="import/export_job/downfields"/>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>string</dataType>
+                        <label translate="true">System Attribute</label>
+                        <dataScope>source_data_system</dataScope>
+                    </settings>
+                    <formElements>
+                        <select>
+                            <settings>
+                                <options class="Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Options"/>
+                            </settings>
+                        </select>
+                    </formElements>
+                </field>
+
+                <field name="source_data_export" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="prefixName" xsi:type="string">source_data_export.value</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>string</dataType>
+                        <label translate="true">Export Attribute</label>
+                        <dataScope>source_data_export</dataScope>
+                    </settings>
+                </field>
+
+                <field name="source_data_replace" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="prefixName" xsi:type="string">source_data_replace.value</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataType>string</dataType>
+                        <label translate="true">Default Value</label>
+                        <dataScope>source_data_replace</dataScope>
+                    </settings>
+                </field>
+
+
+                <field name="position" component="Magento_Catalog/js/form/element/input" formElement="input">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="prefixName" xsi:type="string">option.order</item>
+                            <item name="prefixElementName" xsi:type="string">option_</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <additionalClasses>
+                            <class name="_hidden">true</class>
+                        </additionalClasses>
+                        <dataType>text</dataType>
+                        <visible>false</visible>
+                        <dataScope>position</dataScope>
+                    </settings>
+                </field>
+
+                <actionDelete name="action_delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="fit" xsi:type="boolean">true</item>
+                            <item name="prefixElementName" xsi:type="string">option_</item>
+                            <item name="prefixName" xsi:type="string">source_data_export.delete</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <elementTmpl>Magento_Catalog/form/element/action-delete</elementTmpl>
+                        <dataType>text</dataType>
+                        <componentType>actionDelete</componentType>
+                    </settings>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+    <fieldset name="source_data_filter_container" class="Firebear\ImportExport\Ui\Component\Form\ExportFieldset">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Firebear_ImportExport/js/components/visible-on-options/fieldset</item>
+                <item name="label" xsi:type="string" translate="true">Filters</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">60</item>
+                <item name="visible" xsi:type="boolean">false</item>
+            </item>
+        </argument>
+        <dynamicRows name="source_filter_map">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="componentType" xsi:type="string">dynamicRows</item>
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/dynamic-rows</item>
+                    <item name="addButtonLabel" xsi:type="string" translate="true">Add Filter</item>
+                    <item name="additionalClasses" xsi:type="array">
+                        <item name="admin__field-wide" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="pageSize" xsi:type="number">120</item>
+                    <item name="dndConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">false</item>
+                        <item name="component" xsi:type="string">Firebear_ImportExport/js/components/dynamic-rows/dnd</item>
+                    </item>
+                    <item name="label" xsi:type="string" translate="true">Filters allow you to import / export only
+                        specific entities which match configured filter conditions.
+                    </item>
+                </item>
+            </argument>
+            <container name="record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="component" xsi:type="string">Magento_Ui/js/dynamic-rows/record</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                        <item name="positionProvider" xsi:type="string">source_filter_map.source_filter_position</item>
+                    </item>
+                </argument>
+                <field name="source_filter_entity" class="Firebear\ImportExport\Ui\Component\Form\System\Field">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Types\Options</item>
+                        <item name="source_options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Types\Options</item>
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/export-mappings/select-entity</item>
+                            <item name="dataScope" xsi:type="string">source_filter_entity</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="prefixName" xsi:type="string">source_filter_field.entity</item>
+                            <item name="label" xsi:type="string" translate="true">Entity</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="source_filter_field" class="Firebear\ImportExport\Ui\Component\Form\System\Field">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Filter\Entity\Options</item>
+                        <item name="source_options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Filter\Entity\Options</item>
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="ajaxUrl" xsi:type="url" path="import/job/downfiltr"/>
+                            <item name="dataScope" xsi:type="string">source_filter_field</item>
+                            <item name="formElement" xsi:type="string">select</item>
+                            <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/filter-select</item>
+                            <item name="imports" xsi:type="array">
+                                <item name="changeSource" xsi:type="string" translate="true">${$.parentName}.source_filter_entity:value</item>
+                            </item>
+                            <item name="prefixName" xsi:type="string">source_filter_field.value</item>
+                            <item name="label" xsi:type="string" translate="true">Field</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="source_filter_filter" class="Firebear\ImportExport\Ui\Component\Form\System\Field">
+                    <argument name="data" xsi:type="array">
+                        <item name="options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Filter\Options</item>
+                        <item name="source_options" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Filter\Options</item>
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="ajaxUrl" xsi:type="url" path="import/job/downfiltres"/>
+                            <item name="dataScope" xsi:type="string">source_filter_filter</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/filter-entity</item>
+                            <item name="template" xsi:type="string">Firebear_ImportExport/form/element/multi</item>
+                            <item name="elementTmpl" xsi:type="string">Firebear_ImportExport/form/element/multi</item>
+                            <item name="validation" xsi:type="array">
+                                <item name="required-entry" xsi:type="boolean">true</item>
+                            </item>
+                            <item name="prefixName" xsi:type="string">source_filter_filter.value</item>
+                            <item name="label" xsi:type="string" translate="true">Filter</item>
+                        </item>
+                    </argument>
+                </field>
+                <field name="source_filter_position">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="formElement" xsi:type="string">input</item>
+                            <item name="dataScope" xsi:type="string">source_filter_position</item>
+                            <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/input</item>
+                            <item name="prefixName" xsi:type="string">source_filter_field.order</item>
+                            <item name="visible" xsi:type="boolean">false</item>
+                            <item name="additionalClasses" xsi:type="array">
+                                <item name="_hidden" xsi:type="boolean">true</item>
+                            </item>
+                        </item>
+                    </argument>
+                </field>
+                <actionDelete name="action_delete">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="componentType" xsi:type="string">actionDelete</item>
+                            <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/action-delete</item>
+                            <item name="elementTmpl" xsi:type="string">Firebear_ImportExport/form/element/action-delete</item>
+                            <item name="template" xsi:type="string">Firebear_ImportExport/form/element/action-delete</item>
+                            <item name="prefixName" xsi:type="string">source_filter_field.delete</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="fit" xsi:type="boolean">true</item>
+                        </item>
+                    </argument>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+    <fieldset name="xml_conf">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Firebear_ImportExport/js/components/visible-on-options/fieldset-general</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">XSLT Configuration</item>
+                <item name="sortOrder" xsi:type="number">49</item>
+                <item name="imports" xsi:type="array">
+                    <item name="toggleVisibility" xsi:type="string">${$.ns}.${$.ns}.behavior.behavior_field_file_format:value</item>
+                </item>
+                <item name="valuesForOptions" xsi:type="array">
+                    <item name="xml" xsi:type="string">xml</item>
+                </item>
+            </item>
+        </argument>
+        <field name="xml_switch">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="label" xsi:type="string" translate="true">On</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="dataScope" xsi:type="string">xml_switch</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+        </field>
+        <field name="xslt">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/ace</item>
+                    <item name="elementTmpl" xsi:type="string">Firebear_ImportExport/form/element/ace</item>
+                    <item name="template" xsi:type="string">Firebear_ImportExport/form/fildace</item>
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="dataScope" xsi:type="string">xslt</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">XSLT code</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="email_notification" sortOrder="90">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Email Notifications</label>
+        </settings>
+        <field name="email_type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">export</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Type</label>
+                <dataScope>email_type</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Firebear\ImportExport\Model\Source\Config\EmailType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="template" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">export</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Template</label>
+                <dataScope>template</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Firebear\ImportExport\Model\Source\Config\Template"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="receiver" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">export</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Receiver</label>
+                <dataScope>receiver</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Firebear\ImportExport\Model\Source\Config\Receiver"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="sender" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">export</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Sender</label>
+                <dataScope>sender</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Email\Identity"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="copy" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">export</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Copy To</label>
+                <dataScope>copy</dataScope>
+            </settings>
+        </field>
+        <field name="copy_method" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">export</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Copy Method</label>
+                <dataScope>copy_method</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\Config\Model\Config\Source\Email\Method"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="is_attach" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">export</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Attach job log to email</label>
+                <notice translate="true">Works for log files below 10Mb</notice>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+    </fieldset>
+    <modal name="run_export">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Firebear_ImportExport/js/modal/modal-excomponent</item>
+                <item name="onCancel" xsi:type="string">actionDone</item>
+                <item name="job" xsi:type="string">${ $.provider }</item>
+                <item name="beforeUrl" xsi:type="url" path="import/job/beforerun"/>
+                <item name="url" xsi:type="url" path="import/export_job/run"/>
+                <item name="urlAjax" xsi:type="url" path="import/export_job/status"/>
+                <item name="editUrl" xsi:type="url" path="import/export_job/edit"/>
+                <item name="options" xsi:type="array">
+                    <item name="title" xsi:type="string">Run</item>
+                    <item name="buttons" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="text" xsi:type="string">Run</item>
+                            <item name="class" xsi:type="string">action-primary run</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">${ $.name }</item>
+                                    <item name="actionName" xsi:type="string">actionRun</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <fieldset name="debugger">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string"/>
+                    <item name="dataScope" xsi:type="string"/>
+                </item>
+            </argument>
+            <field name="debug">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="component" xsi:type="string">Firebear_ImportExport/js/form/element/debug</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">input</item>
+                        <item name="label" xsi:type="string" translate="true">Debug</item>
+                        <item name="template" xsi:type="string">Firebear_ImportExport/form/element/debug</item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+    </modal>
+    <modal name="history_export">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="onCancel" xsi:type="string">actionDone</item>
+                <item name="options" xsi:type="array">
+                    <item name="title" xsi:type="string">History</item>
+                </item>
+            </item>
+        </argument>
+        <insertListing name="history">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Firebear_ImportExport/js/components/insert-listing</item>
+                    <item name="autoRender" xsi:type="string">true</item>
+                    <item name="ns" xsi:type="string">export_history_grid</item>
+                    <item name="externalFilterMode" xsi:type="boolean">true</item>
+                    <item name="dataLinks" xsi:type="array">
+                        <item name="imports" xsi:type="boolean">true</item>
+                        <item name="exports" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="params" xsi:type="array">
+                        <item name="filters_modifier" xsi:type="array">
+                            <item name="job_id" xsi:type="array">
+                                <item name="condition_type" xsi:type="string">eq</item>
+                                <item name="value" xsi:type="string">${ $.provider }:${ $.dataScope }.entity_id</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </insertListing>
+    </modal>
+</form>

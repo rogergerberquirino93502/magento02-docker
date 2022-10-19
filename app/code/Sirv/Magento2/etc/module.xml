@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Sirv module declaration
+ *
+ * @author    Sirv Limited <support@sirv.com>
+ * @copyright Copyright (c) 2018-2022 Sirv Limited <support@sirv.com>. All rights reserved
+ * @license   https://sirv.com/
+ * @link      https://sirv.com/integration/magento/
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Sirv_Magento2" setup_version="6.0.2">
+        <sequence>
+            <module name="Magento_Backend"/>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_ProductVideo"/>
+            <module name="Magento_ConfigurableProduct"/>
+            <module name="Magento_Swatches"/>
+            <module name="MagicToolbox_MagicThumb"/>
+            <module name="MagicToolbox_MagicZoom"/>
+            <module name="MagicToolbox_MagicZoomPlus"/>
+            <module name="MagicToolbox_MagicScroll"/>
+            <module name="MagicToolbox_MagicSlideshow"/>
+            <module name="MagicToolbox_Magic360"/>
+        </sequence>
+    </module>
+</config>

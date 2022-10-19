@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="firebear_export_jobs" resource="default" engine="innodb" comment="File Updated At">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Job Id"/>
+    <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+    <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Is Job Active"/>
+    <column xsi:type="varchar" name="cron" nullable="true" length="100" comment="Cron schedule"/>
+    <column xsi:type="varchar" name="frequency" nullable="false" length="10" comment="Frequency"/>
+    <column xsi:type="varchar" name="entity" nullable="false" length="100" comment="Entity Type"/>
+    <column xsi:type="text" name="behavior_data" nullable="false" comment="Behavior Data (json)"/>
+    <column xsi:type="text" name="export_source" nullable="false" comment="Export Source"/>
+    <column xsi:type="text" name="source_data" nullable="false" comment="Source Data (json)"/>
+    <column xsi:type="timestamp" name="file_updated_at" on_update="false" nullable="true" comment="File Updated At"/>
+    <column xsi:type="blob" name="xslt" nullable="true" comment="Xslt" onCreate="migrateDataFrom(xslt)"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="firebear_import_jobs" resource="default" engine="innodb" comment="File Updated At">
+    <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Job Id"/>
+    <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+    <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Is Job Active"/>
+    <column xsi:type="varchar" name="cron" nullable="true" length="100" comment="Cron schedule"/>
+    <column xsi:type="varchar" name="frequency" nullable="false" length="10" comment="Frequency"/>
+    <column xsi:type="varchar" name="entity" nullable="false" length="100" comment="Entity Type"/>
+    <column xsi:type="text" name="behavior_data" nullable="false" comment="Behavior Data (json)"/>
+    <column xsi:type="varchar" name="import_source" nullable="false" length="100" comment="Import Source"/>
+    <column xsi:type="text" name="source_data" nullable="false" comment="Source Data (json)"/>
+    <column xsi:type="timestamp" name="file_updated_at" on_update="false" nullable="true" comment="File Updated At"/>
+    <column xsi:type="blob" name="mapping" nullable="true" comment="mapping field"/>
+    <column xsi:type="blob" name="price_rules" nullable="true" comment="Price rules"/>
+    <column xsi:type="blob" name="xslt" nullable="true" comment="Xslt" onCreate="migrateDataFrom(xslt)"/>
+    <column xsi:type="varchar" name="translate_from" nullable="true" length="255" comment="Translate from"/>
+    <column xsi:type="varchar" name="translate_to" nullable="true" length="255" comment="Translate to"/>
+    <column xsi:type="int" name="position" padding="11" unsigned="false" nullable="true" identity="false" comment="Position"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="firebear_import_job_mapping" resource="default" engine="innodb" comment="Import Attributes Mapping">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="int" name="job_id" padding="11" unsigned="false" nullable="false" identity="false" comment="Job Id"/>
+    <column xsi:type="smallint" name="attribute_id" padding="5" unsigned="true" nullable="true" identity="false" comment="Magento Attribute Id"/>
+    <column xsi:type="varchar" name="special_attribute" nullable="true" length="255" comment="Special System Attribute"/>
+    <column xsi:type="varchar" name="import_code" nullable="true" length="255" comment="Import Attribute Code"/>
+    <column xsi:type="varchar" name="default_value" nullable="true" length="255" comment="Default Value"/>
+    <column xsi:type="smallint" name="custom" padding="6" unsigned="false" nullable="true" identity="false" default="0" comment="Default Value"/>
+    <column xsi:type="int" name="position" padding="11" unsigned="false" nullable="false" identity="false" comment="Position"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="IMPORT_JOB_MAPPING_JOB_ID_IMPORT_JOBS_ENTITY_ID" table="import_job_mapping" column="job_id" referenceTable="firebear_import_jobs" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="IMPORT_JOB_MAPPING_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="import_job_mapping" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="IMPORT_JOB_MAPPING_JOB_ID_ATTRIBUTE_ID">
+      <column name="job_id"/>
+      <column name="attribute_id"/>
+    </constraint>
+    <index referenceId="IMPORT_JOB_MAPPING_JOB_ID" indexType="btree">
+      <column name="job_id"/>
+    </index>
+    <index referenceId="IMPORT_JOB_MAPPING_ATTRIBUTE_ID" indexType="btree">
+      <column name="attribute_id"/>
+    </index>
+  </table>
+  <table name="firebear_import_history" resource="default" engine="innodb" comment="Export Jobs">
+    <column xsi:type="int" name="history_id" padding="11" unsigned="false" nullable="false" identity="true" comment="History Id"/>
+    <column xsi:type="int" name="job_id" padding="11" unsigned="false" nullable="false" identity="false" comment="Job Id"/>
+    <column xsi:type="timestamp" name="started_at" on_update="false" nullable="true" comment="Started"/>
+    <column xsi:type="timestamp" name="finished_at" on_update="false" nullable="true" comment="Finished"/>
+    <column xsi:type="varchar" name="type" nullable="true" length="100" comment="Type"/>
+    <column xsi:type="varchar" name="file" nullable="false" length="255" comment="Imported File"/>
+    <column xsi:type="boolean" name="db_log_storage" nullable="false" comment="db_log_storage"/>
+    <column xsi:type="blob" name="log_content" nullable="true" comment="log_content"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="history_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FIREBEAR_IMPORT_HISTORY_JOB_ID_FIREBEAR_IMPORT_JOBS_ENTITY_ID" table="firebear_import_history" column="job_id" referenceTable="firebear_import_jobs" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="FIREBEAR_IMPORT_HISTORY_HISTORY_ID" indexType="btree">
+      <column name="history_id"/>
+    </index>
+  </table>
+  <table name="firebear_export_history" resource="default" engine="innodb" comment="Export Jobs">
+    <column xsi:type="int" name="history_id" padding="11" unsigned="false" nullable="false" identity="true" comment="History Id"/>
+    <column xsi:type="int" name="job_id" padding="11" unsigned="false" nullable="false" identity="false" comment="Job Id"/>
+    <column xsi:type="timestamp" name="started_at" on_update="false" nullable="true" comment="Started"/>
+    <column xsi:type="timestamp" name="finished_at" on_update="false" nullable="true" comment="Finished"/>
+    <column xsi:type="varchar" name="type" nullable="true" length="100" comment="Type"/>
+    <column xsi:type="varchar" name="file" nullable="false" length="255" comment="Exported File"/>
+    <column xsi:type="text" name="temp_file" nullable="true" comment="Temp file export"/>
+    <column xsi:type="smallint" name="is_moved" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is Moved"/>
+    <column xsi:type="boolean" name="db_log_storage" nullable="false" comment="db_log_storage"/>
+    <column xsi:type="blob" name="log_content" nullable="true" comment="log_content"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="history_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FIREBEAR_EXPORT_HISTORY_JOB_ID_FIREBEAR_EXPORT_JOBS_ENTITY_ID" table="firebear_export_history" column="job_id" referenceTable="firebear_export_jobs" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="FIREBEAR_EXPORT_HISTORY_HISTORY_ID" indexType="btree">
+      <column name="history_id"/>
+    </index>
+  </table>
+  <table name="firebear_importexport_importdata" resource="default" engine="innodb" comment="Firebear Import Data Table">
+    <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+    <column xsi:type="varchar" name="entity" nullable="false" length="50" comment="Entity"/>
+    <column xsi:type="varchar" name="behavior" nullable="false" length="10" default="append" comment="Behavior"/>
+    <column xsi:type="varchar" name="subentity" nullable="true" length="50" comment="SubEntity"/>
+    <column xsi:type="varchar" name="file" nullable="true" length="50" comment="File"/>
+    <column xsi:type="int" name="job_id" padding="11" unsigned="false" nullable="false" identity="false" comment="Job Id"/>
+    <column xsi:type="longtext" name="data" nullable="true" comment="Data"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_9AF4AC7F682E8FAAE2A91E723745CB33" table="firebear_importexport_importdata" column="job_id" referenceTable="firebear_import_jobs" referenceColumn="entity_id" onDelete="CASCADE"/>
+  </table>
+  <table name="firebear_export_jobs_event" resource="default" engine="innodb" comment="Export job event">
+    <column xsi:type="int" name="job_id" padding="11" unsigned="false" nullable="false" identity="false" comment="Job Id"/>
+    <column xsi:type="varchar" name="event" nullable="false" length="255" comment="Event name"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="job_id"/>
+      <column name="event"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FIREBEAR_EXPORT_JOBS_EVENT_JOB_ID_FIREBEAR_EXPORT_JOBS_ENTITY_ID" table="firebear_export_jobs_event" column="job_id" referenceTable="firebear_export_jobs" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="FIREBEAR_EXPORT_JOBS_EVENT_EVENT" indexType="btree">
+      <column name="event"/>
+    </index>
+  </table>
+  <table name="firebear_import_job_replacing" resource="default" engine="innodb" comment="Import Find and Replace Data">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="int" name="job_id" padding="11" unsigned="false" nullable="false" identity="false" comment="Job Id"/>
+    <column xsi:type="varchar" name="attribute_code" nullable="false" length="255" comment="Magento Attribute Code"/>
+    <column xsi:type="smallint" name="target" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Target Option"/>
+    <column xsi:type="smallint" name="is_case_sensitive" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is Case Sensitive"/>
+    <column xsi:type="text" name="find" nullable="false" comment="Find text"/>
+    <column xsi:type="varchar" name="entity_type" nullable="false" length="255" comment="Entity type"/>
+    <column xsi:type="varchar" name="replace" nullable="true" length="255" comment="Replace text"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_C59A17FB25B401C75D489A189674AE0F" table="firebear_import_job_replacing" column="job_id" referenceTable="firebear_import_jobs" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="FIREBEAR_IMPORT_JOB_REPLACING_JOB_ID_ATTRIBUTE_CODE_ENTITY_TYPE">
+      <column name="job_id"/>
+      <column name="attribute_code"/>
+      <column name="entity_type"/>
+    </constraint>
+    <index referenceId="FIREBEAR_IMPORT_JOB_REPLACING_JOB_ID" indexType="btree">
+      <column name="job_id"/>
+    </index>
+    <index referenceId="FIREBEAR_IMPORT_JOB_REPLACING_ATTRIBUTE_CODE" indexType="btree">
+      <column name="attribute_code"/>
+    </index>
+    <index referenceId="FIREBEAR_IMPORT_JOB_REPLACING_TARGET" indexType="btree">
+      <column name="target"/>
+    </index>
+  </table>
+</schema>

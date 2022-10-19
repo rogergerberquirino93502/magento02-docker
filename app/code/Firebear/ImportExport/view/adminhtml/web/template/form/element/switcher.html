@@ -1,0 +1,33 @@
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<div class="admin__field" data-bind="css: $data.additionalClasses, attr: {'data-index': index}, visible: visible"
+     xmlns="http://www.w3.org/1999/html">
+    <div class="admin__field-label">
+        <label class="admin__form-field-label" data-bind="attr: {for: uid}">
+            <span translate="label"></span>
+        </label>
+    </div>
+    <div class="admin__field-control">
+        <div class="admin__actions-switch" data-role="switcher">
+            <input type="checkbox"
+                   class="admin__actions-switch-checkbox"
+                   simple-checked="checked"
+                   ko-disabled="disabled"
+                   ko-focused="focused"
+                   ko-value="value"
+                   attr="id: uid, name: inputName"/>
+            <label class="admin__actions-switch-label" attr="for: uid">
+                <span class="admin__actions-switch-text"
+                       attr="'data-text-on': toggleLabels.on, 'data-text-off': toggleLabels.off"></span>
+            </label>
+        </div>
+        <div class="admin__field-tooltip">
+            <a class="admin__field-tooltip-action action-help" target="_blank" tabindex="1" data-bind="attr: {href: tooltip.link}"></a>
+            <div class="admin__field-tooltip-content" data-bind="html: tooltip.description"></div>
+        </div>
+    </div>
+</div>

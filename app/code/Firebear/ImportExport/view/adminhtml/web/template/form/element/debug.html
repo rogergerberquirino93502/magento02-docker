@@ -1,0 +1,17 @@
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<label class="admin__field-label">
+    <span>Console:</span>
+</label>
+<!-- ko if: showDebug -->
+<div>  
+ <div class="pbar"><div class="progress-pbar" data-bind="style:{ width: percentWidth }"></div><div class="percent" text="percent"></div></div>
+ <div class="elapsed"></div>
+</div>
+<!-- /ko -->
+<div class="debug" id="debug-run">
+</div>

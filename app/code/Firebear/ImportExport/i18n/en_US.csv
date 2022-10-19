@@ -1,0 +1,233 @@
+﻿Back,Back
+"Delete Export Job","Delete Export Job"
+"Are you sure you want to do this?","Are you sure you want to do this?"
+"Save & Run","Save & Run"
+"Save and Continue Edit","Save and Continue Edit"
+"Save Job","Save Job"
+"View History","View History"
+"Delete Import Job","Delete Import Job"
+"You deleted the job.","You deleted the job."
+"We can't find a job to delete.","We can't find a job to delete."
+"The job changed status.","The job changed status."
+"We can't find a job to сhange status.","We can't find a job to сhange status."
+"This job is no longer exists.","This job is no longer exists."
+"Export Jobs","Export Jobs"
+Export,Export
+"Edit Job","Edit Job"
+"New Job","New Job"
+Jobs,Jobs
+"Please correct the data sent.","Please correct the data sent."
+"Something went wrong while saving the export job.","Something went wrong while saving the export job."
+"This export no longer exists.","This export no longer exists."
+"You saved the export.","You saved the export."
+"Something went wrong while saving the export.","Something went wrong while saving the export."
+"The job has been deleted.","The job has been deleted."
+"File not found.","File not found."
+"Import Jobs","Import Jobs"
+Import,Import
+"Something went wrong while saving the job.","Something went wrong while saving the job."
+"Job title can't be empty.","Job title can't be empty."
+"This job no longer exists.","This job no longer exists."
+"Job was saved successfully.","Job was saved successfully."
+Status,Status
+"Maximum error count has been reached or system error is occurred!","Maximum error count has been reached or system error is occurred!"
+"Import successfully done","Import successfully done"
+"Sorry, but the data is invalid or the file is not uploaded.","Sorry, but the data is invalid or the file is not uploaded."
+"The file was not uploaded.","The file was not uploaded."
+"This file is empty. Please try another one.","This file is empty. Please try another one."
+"Data validation failed. Please fix the following errors and upload the file again.","Data validation failed. Please fix the following errors and upload the file again."
+"Attributes <strong id=""missing_attributes_list"">%1</strong> are not exist in your system.","Attributes <strong id=""missing_attributes_list"">%1</strong> are not exist in your system."
+"<span id=""missing_attribute_values_list"">Some attribute values are not exist in your system.</span>","<span id=""missing_attribute_values_list"">Some attribute values are not exist in your system.</span>"
+"File is valid!","File is valid!"
+"The file is valid, but we can't import it for some reason.","The file is valid, but we can't import it for some reason."
+"Checked rows: %1, checked entities: %2, invalid rows: %3, total errors: %4","Checked rows: %1, checked entities: %2, invalid rows: %3, total errors: %4"
+"<span id=""attribute_created"">All missing attribute values were created. Validate your Job again!</span>","<span id=""attribute_created"">All missing attribute values were created. Validate your Job again!</span>"
+"Import source type class for '"" . . ""' is not exist.","Import source type class for '"" . . ""' is not exist."
+"Begin export of %1","Begin export of %1"
+"There is no data for the export.","There is no data for the export."
+"Exported %1 rows.","Exported %1 rows."
+"The export is finished.","The export is finished."
+"Please provide filter data.","Please provide filter data."
+"Please enter a correct entity model.","Please enter a correct entity model."
+"The adapter object must be an instance of %1.","The adapter object must be an instance of %1."
+"Please correct the file format.","Please correct the file format."
+"The header column names are already set.","The header column names are already set."
+"Could not save the job: %1","Could not save the job: %1"
+"Export History with id ""%1"" does not exist.","Export History with id ""%1"" does not exist."
+"Could not delete the job: %1","Could not delete the job: %1"
+Orders,Orders
+"You have not selected items","You have not selected items"
+"Begin Export","Begin Export"
+"Scope Data","Scope Data"
+"Write to Source","Write to Source"
+label,label
+"Entity %1","Entity %1"
+"Job with id ""%1"" does not exist.","Job with id ""%1"" does not exist."
+"Unable to open SFTP connection as %1@%2","Unable to open SFTP connection as %1@%2"
+"Begin data validation","Begin data validation"
+"Import data validation is complete.","Import data validation is complete."
+"Too many errors. Please check your debug log file.","Too many errors. Please check your debug log file."
+"Import job #' . . ' failed.","Import job #' . . ' failed."
+"in rows","in rows"
+"'%1' model extension is not supported","'%1' model extension is not supported"
+"Adapter must be an instance of \Magento\ImportExport\Model\Import\AbstractSource","Adapter must be an instance of \Magento\ImportExport\Model\Import\AbstractSource"
+"email: %1 is not valided","email: %1 is not valided"
+"email: %1 .... %2s","email: %1 .... %2s"
+"sku: %1 .... %2s","sku: %1 .... %2s"
+"name: %1 .... %2s","name: %1 .... %2s"
+"Import History with id ""%1"" does not exist.","Import History with id ""%1"" does not exist."
+"sku: %1 is not valided","sku: %1 is not valided"
+"Imported: %1 rows","Imported: %1 rows"
+"Updated: %1 rows","Updated: %1 rows"
+"Checked column %1","Checked column %1"
+"Finish checking columns","Finish checking columns"
+"Errors count: %1","Errors count: %1"
+"Start saving bunches","Start saving bunches"
+"Finish saving bunches","Finish saving bunches"
+"File directory '%1' is not readable.","File directory '%1' is not readable."
+"File directory '%1' is not writable.","File directory '%1' is not writable."
+Enabled,Enabled
+Disabled,Disabled
+None,None
+"None (manual run only)","None (manual run only)"
+Minute,Minute
+"Every minute","Every minute"
+Hour,Hour
+"Every hour","Every hour"
+Day,Day
+"Every day at 3:00am","Every day at 3:00am"
+Week,Week
+"Every Monday at 3:00am","Every Monday at 3:00am"
+Month,Month
+"Every 1st day of month at 3:00am","Every 1st day of month at 3:00am"
+Custom,Custom
+"Could not save the map: %1","Could not save the map: %1"
+"Map with id ""%1"" does not exist.","Map with id ""%1"" does not exist."
+"Could not delete the map: %1","Could not delete the map: %1"
+"Data validation is failed. Please fix errors and re-upload the file..","Data validation is failed. Please fix errors and re-upload the file.."
+"in rows:","in rows:"
+"Unable to open your file. Please make sure File Path is correct.","Unable to open your file. Please make sure File Path is correct."
+"Unable to open your CSV file. Please make sure File Path is correct.","Unable to open your CSV file. Please make sure File Path is correct."
+"Duplicated attributes.","Duplicated attributes."
+"""Can't create local file /var/import/dropbox'. Please check files permissions. "" .","""Can't create local file /var/import/dropbox'. Please check files permissions. "" ."
+"File not found on Dropbox","File not found on Dropbox"
+"Can't initialize %s client","Can't initialize %s client"
+"Folder for import / export don't have enough permissions! Please set 775","Folder for import / export don't have enough permissions! Please set 775"
+"File not found","File not found"
+"You have installed and enabled FireBear Studio Improved Import / Export extension - to use it please go to System -> %1 / %2. We don't improve and not make any changes on default Magento 2 Import / Export behaviour!","You have installed and enabled FireBear Studio Improved Import / Export extension - to use it please go to System -> %1 / %2. We don't improve and not make any changes on default Magento 2 Import / Export behaviour!"
+"File is valid! To start import process press ""Import"" button","File is valid! To start import process press ""Import"" button"
+"Show more","Show more"
+"Additional data","Additional data"
+"Following Error(s) has been occurred during importing process:","Following Error(s) has been occurred during importing process:"
+"Only the first 100 errors are shown. ","Only the first 100 errors are shown. "
+"Download full report","Download full report"
+"in row(s):","in row(s):"
+"The format of this file is not suitable","The format of this file is not suitable"
+"Edit & Run","Edit & Run"
+Delete,Delete
+"Delete ""${ $.$data.title }""","Delete ""${ $.$data.title }"""
+"Are you sure you want to delete a ""${ $.$data.title }"" record?","Are you sure you want to delete a ""${ $.$data.title }"" record?"
+Enable,Enable
+Disable,Disable
+Minutes,Minutes
+Hours,Hours
+Days,Days
+Months,Months
+"Days of Week","Days of Week"
+"-- Please Select --","-- Please Select --"
+"Product Attributes","Product Attributes"
+"Special Fields","Special Fields"
+"Other Fields","Other Fields"
+Yes,Yes
+No,No
+"Stop on Error","Stop on Error"
+"Skip error entries","Skip error entries"
+Download,Download
+notice,notice
+"Some items may not be compatible","Some items may not be compatible"
+"Download file","Download file"
+"Please configure File Path.","Please configure File Path."
+"Fail! Can't connect ","Fail! Can't connect "
+"Success! Your connection is ready!","Success! Your connection is ready!"
+"Error on General : You have not selected a Entity Type yet or wrong File Path!","Error on General : You have not selected a Entity Type yet or wrong File Path!"
+"The import may not work correctly. No match for fields: ","The import may not work correctly. No match for fields: "
+"File validated successfully. Please review and update custom mapping settings if necessary and click Save & Run to run the import job","File validated successfully. Please review and update custom mapping settings if necessary and click Save & Run to run the import job"
+"Select A Column","Select A Column"
+"File you are trying to upload exceeds maximum file size limit.( ","File you are trying to upload exceeds maximum file size limit.( "
+"Job saved successfully - please click Run button for launch","Job saved successfully - please click Run button for launch"
+Error,Error
+"The process is over","The process is over"
+"Improved Import / Export","Improved Import / Export"
+"Firebear Studio","Firebear Studio"
+Import/Export,Import/Export
+General,General
+"Create attributes values on the fly","Create attributes values on the fly"
+"Add New Job","Add New Job"
+ID,ID
+JobId,JobId
+Type,Type
+Start,Start
+Finish,Finish
+Log,Log
+"Delete items","Delete items"
+"Are you sure you want to delete selected items?","Are you sure you want to delete selected items?"
+Edit,Edit
+Title,Title
+Cron,Cron
+Frequency,Frequency
+"Entity Type","Entity Type"
+"Export Source","Export Source"
+"General Information","General Information"
+"General Settings","General Settings"
+"Enable Job","Enable Job"
+"Job Title","Job Title"
+"Cron Shedule","Cron Shedule"
+"Export Settings","Export Settings"
+Entity,Entity
+"Export Behavior","Export Behavior"
+"File Format","File Format"
+"Field Separator","Field Separator"
+"Multiple value separator","Multiple value separator"
+"Field Enclosure","Field Enclosure"
+"Map Attributes","Map Attributes"
+"Only fields from Mapping","Only fields from Mapping"
+"Add New","Add New"
+"Mapping feature allows you to set the conformity between custom data structure and Magento 2 fields. Entity - source of system attribute; System Attribute - select system attributes that should be mapped to custom attributes; Export Attributes - specify custom attributes; DefaultValued - add hardcoded values if necessary.","Mapping feature allows you to set the conformity between custom data structure and Magento 2 fields. Entity - source of system attribute; System Attribute - select system attributes that should be mapped to custom attributes; Export Attributes - specify custom attributes; DefaultValued - add hardcoded values if necessary."
+"System Attribute","System Attribute"
+"Export Attribute","Export Attribute"
+"${ $.parentName}.source_data_system:value","${ $.parentName}.source_data_system:value"
+"Default Value","Default Value"
+Filters,Filters
+"Add Filter","Add Filter"
+"Filters allow you to import / export only specific entities which match configured filter conditions.","Filters allow you to import / export only specific entities which match configured filter conditions."
+${$.parentName}.source_filter_entity:value,${$.parentName}.source_filter_entity:value
+Field,Field
+Filter,Filter
+Debug,Debug
+"Import Settings","Import Settings"
+"Import Behavior","Import Behavior"
+"Category Levels separated by","Category Levels separated by"
+"Categories separated by","Categories separated by"
+"Import Source","Import Source"
+"Import File Type","Import File Type"
+"Select A Platform","Select A Platform"
+"Import Attribute","Import Attribute"
+"Not all products can be attached to a configurable product with sku = '%1', since attribute '%2' is missing in attribute set '%3'.","Not all products can be attached to a configurable product with sku = '%1', since attribute '%2' is missing in attribute set '%3'."
+"Product type is not supported %1","Product type is not supported %1"
+"Search Term can't be deleted.","Search Term can't be deleted."
+"Column QUERY_TEXT is empty. Row:#%1","Column QUERY_TEXT is empty. Row:#%1"
+"Deleted: %1 Search Terms.","Deleted: %1 Search Terms."
+"Imported: %1 Search Terms.","Imported: %1 Search Terms."
+"Updated: %1 Search Terms.","Updated: %1 Search Terms."
+"Please specify a source.","Please specify a source."
+"Column GROUP_ID and SYNONYMS is empty.","Column GROUP_ID and SYNONYMS is empty."
+"Deleted: %1 Synonym Groups.","Deleted: %1 Synonym Groups."
+"Synonym Groups can't be deleted.","Synonym Groups can't be deleted."
+"Imported: %1 Synonym Groups.","Imported: %1 Synonym Groups."
+"Updated: %1 Synonym Groups.","Updated: %1 Synonym Groups."
+"Email address is not valid","Email address is not valid"
+"Deleted: %1 subscribers","Deleted: %1 subscribers"
+"Subscribers can't be deleted.","Subscribers can't be deleted."
+"Subscriber with email: %1 is not valid","Subscriber with email: %1 is not valid"
+"Imported: %1 subscribers","Imported: %1 subscribers"
+"Updated: %1 subscribers","Updated: %1 subscribers"

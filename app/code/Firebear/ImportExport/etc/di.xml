@@ -1,0 +1,677 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Firebear\ImportExport\Api\Data\SeparatorFormatterInterface" type="Firebear\ImportExport\Model\ResourceModel\SeparatorFormatter"/>
+    <preference for="Firebear\ImportExport\Model\Source\ConfigInterface"
+                type="Firebear\ImportExport\Model\Source\Config"/>
+    <preference for="Firebear\ImportExport\Api\Data\ExportInterface" type="Firebear\ImportExport\Model\ExportJob"/>
+    <preference for="Firebear\ImportExport\Api\ExportJobRepositoryInterface"
+                type="Firebear\ImportExport\Model\ExportJobRepository"/>
+    <preference for="Firebear\ImportExport\Api\Data\ImportInterface" type="Firebear\ImportExport\Model\Job"/>
+    <preference for="Firebear\ImportExport\Api\Data\ImportMappingInterface"
+                type="Firebear\ImportExport\Model\Job\Mapping"/>
+    <preference for="Firebear\ImportExport\Api\Data\ImportHistoryInterface"
+                type="Firebear\ImportExport\Model\Import\History"/>
+    <preference for="Firebear\ImportExport\Api\Data\ExportHistoryInterface"
+                type="Firebear\ImportExport\Model\Export\History"/>
+    <preference for="Firebear\ImportExport\Api\Data\JobReplacingInterface"
+                type="Firebear\ImportExport\Model\Job\Replacing"/>
+    <preference for="Firebear\ImportExport\Api\JobRepositoryInterface"
+                type="Firebear\ImportExport\Model\JobRepository"/>
+    <preference for="Firebear\ImportExport\Api\JobMappingRepositoryInterface"
+                type="Firebear\ImportExport\Model\Job\MappingRepository"/>
+    <preference for="Firebear\ImportExport\Api\Import\GetByIdInterface" type="Firebear\ImportExport\Model\Api\Import\GetById"/>
+    <preference for="Firebear\ImportExport\Api\Import\GetListInterface" type="Firebear\ImportExport\Model\Api\Import\GetList"/>
+    <preference for="Firebear\ImportExport\Api\Import\SaveInterface" type="Firebear\ImportExport\Model\Api\Import\Save"/>
+    <preference for="Firebear\ImportExport\Api\Import\DeleteInterface" type="Firebear\ImportExport\Model\Api\Import\Delete"/>
+    <preference for="Firebear\ImportExport\Api\Import\DeleteByIdInterface" type="Firebear\ImportExport\Model\Api\Import\DeleteById"/>
+    <preference for="Firebear\ImportExport\Api\Import\RunChainInterface" type="Firebear\ImportExport\Model\Api\Import\RunChain"/>
+    <preference for="Firebear\ImportExport\Api\Import\RunByIdsInterface" type="Firebear\ImportExport\Model\Api\Import\RunByIds"/>
+    <preference for="Firebear\ImportExport\Api\Import\RunByIdInterface" type="Firebear\ImportExport\Model\Api\Import\RunById"/>
+    <preference for="Firebear\ImportExport\Api\Import\RunByStrategyInterface" type="Firebear\ImportExport\Model\Api\Import\RunByStrategy"/>
+    <preference for="Firebear\ImportExport\Api\Import\MassUpdateInterface" type="Firebear\ImportExport\Model\Api\Import\MassUpdate"/>
+    <preference for="Firebear\ImportExport\Api\Import\BeforeRunInterface" type="Firebear\ImportExport\Model\Api\Import\BeforeRun"/>
+    <preference for="Firebear\ImportExport\Api\Import\RunInterface" type="Firebear\ImportExport\Model\Api\Import\Run"/>
+    <preference for="Firebear\ImportExport\Api\Import\GetBunchCountInterface" type="Firebear\ImportExport\Model\Api\Import\GetBunchCount"/>
+    <preference for="Firebear\ImportExport\Api\Import\ProcessInterface" type="Firebear\ImportExport\Model\Api\Import\Process"/>
+    <preference for="Firebear\ImportExport\Api\Import\ProcessResponseInterface" type="Firebear\ImportExport\Model\Api\Import\ProcessResponse"/>
+    <preference for="Firebear\ImportExport\Api\Import\ConsoleInterface" type="Firebear\ImportExport\Model\Api\Import\Console"/>
+    <preference for="Firebear\ImportExport\Api\Import\UploadInterface" type="Firebear\ImportExport\Model\Api\Import\Upload"/>
+    <preference for="Firebear\ImportExport\Api\Import\ReindexInterface" type="Firebear\ImportExport\Model\Api\Import\Reindex"/>
+    <preference for="Firebear\ImportExport\Api\Import\SearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Firebear\ImportExport\Model\Job\Handler\HandlerPoolInterface" type="Firebear\ImportExport\Model\Job\Handler\HandlerPool"/>
+    <preference for="Firebear\ImportExport\Model\Job\Strategy\StrategyPoolInterface" type="Firebear\ImportExport\Model\Job\Strategy\StrategyPool"/>
+    <preference for="Firebear\ImportExport\Api\HistoryRepositoryInterface"
+                type="Firebear\ImportExport\Model\Import\HistoryRepository"/>
+    <preference for="Firebear\ImportExport\Api\JobReplacingRepositoryInterface" type="Firebear\ImportExport\Model\Job\ReplacingRepository"/>
+    <preference for="Firebear\ImportExport\Api\Export\SearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Firebear\ImportExport\Api\Export\SaveInterface" type="Firebear\ImportExport\Model\Api\Export\Save"/>
+    <preference for="Firebear\ImportExport\Api\Export\GetListInterface" type="Firebear\ImportExport\Model\Api\Export\GetList"/>
+    <preference for="Firebear\ImportExport\Api\Export\ValidatorInterface" type="Firebear\ImportExport\Model\Api\Export\Validator"/>
+    <preference for="Firebear\ImportExport\Api\Export\HistoryRepositoryInterface" type="Firebear\ImportExport\Model\Export\HistoryRepository"/>
+    <preference for="Firebear\ImportExport\Api\Export\History\GetByIdInterface" type="Firebear\ImportExport\Model\Api\Export\History\GetById"/>
+    <preference for="Firebear\ImportExport\Api\Export\History\GetListInterface" type="Firebear\ImportExport\Model\Api\Export\History\GetList"/>
+    <preference for="Firebear\ImportExport\Api\Export\History\CompressInterface" type="Firebear\ImportExport\Model\Api\Export\History\Compress"/>
+    <preference for="Firebear\ImportExport\Api\Export\History\CreateInterface" type="Firebear\ImportExport\Model\Api\Export\History\Create"/>
+    <preference for="Firebear\ImportExport\Api\Export\History\SaveInterface" type="Firebear\ImportExport\Model\Api\Export\History\Save"/>
+    <preference for="Firebear\ImportExport\Api\Export\History\SearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Firebear\ImportExport\Model\Lib\LibPoolInterface" type="Firebear\ImportExport\Model\Lib\LibPool"/>
+    <preference for="Firebear\ImportExport\Api\Data\ExportEventInterface"
+                type="Firebear\ImportExport\Model\ExportJob\Event"/>
+    <preference for="Firebear\ImportExport\Api\JobEventRepositoryInterface"
+                type="Firebear\ImportExport\Model\ExportJob\EventRepository"/>
+    <preference for="Firebear\ImportExport\Model\Data\ProcessorInterface" type="Firebear\ImportExport\Model\Data\CompositeProcessor"/>
+    <type name="Firebear\ImportExport\Model\Api\Export\Validator">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="path" xsi:type="object">Firebear\ImportExport\Model\Export\Job\Validator\FilePathValidator</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Job\Handler\HandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="indexer" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Handler\IndexerHandler</item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                </item>
+                <item name="move_file" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Handler\MoveFileHandler</item>
+                    <item name="sortOrder" xsi:type="number">900</item>
+                </item>
+                <item name="compress" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Handler\CompressHandler</item>
+                    <item name="sortOrder" xsi:type="number">800</item>
+                </item>
+                <item name="delete_file" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Handler\DeleteFileHandler</item>
+                    <item name="sortOrder" xsi:type="number">910</item>
+                </item>
+                <item name="email" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Handler\EmailHandler</item>
+                    <item name="sortOrder" xsi:type="number">1000</item>
+                </item>
+                <item name="clear_cache_advanced_pricing" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Handler\ClearCacheAdvancedPricingHandler</item>
+                    <item name="sortOrder" xsi:type="number">1010</item>
+                </item>
+                <item name="summary" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Handler\SummaryHandler</item>
+                    <item name="sortOrder" xsi:type="number">10000</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Job\Strategy\StrategyPool">
+        <arguments>
+            <argument name="strategies" xsi:type="array">
+                <item name="scan_dir" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Strategy\ScanDirStrategy</item>
+                    <item name="sortOrder" xsi:type="number">1</item>
+                </item>
+                <item name="simple" xsi:type="array">
+                    <item name="class" xsi:type="string">Firebear\ImportExport\Model\Job\Strategy\SimpleStrategy</item>
+                    <item name="sortOrder" xsi:type="number">1000</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\ImportExport\Block\Adminhtml\Import\Edit\Before">
+        <plugin name="firebear_importexport_block_import_before"
+                type="Firebear\ImportExport\Plugin\Block\Adminhtml\Import\Edit\Before"/>
+    </type>
+    <type name="Magento\BundleImportExport\Model\Import\Product\Type\Bundle\RelationsDataSaver">
+        <plugin name="addBundleRelations"
+                type="\Firebear\ImportExport\Plugin\Model\Import\Product\Type\Bundle\RelationsDataSaver"/>
+    </type>
+    <type name="Magento\ConfigurableImportExport\Model\Export\RowCustomizer">
+        <plugin name="prepareJobs" type="\Firebear\ImportExport\Plugin\Model\Export\RowCustomizer"/>
+    </type>
+    <type name="Magento\Catalog\Block\Adminhtml\Category\Checkboxes\Tree">
+        <plugin name="firebear_importexport_set_rule_chooser_url"
+                type="Firebear\ImportExport\Plugin\Block\Adminhtml\Category\Checkboxes\Tree"/>
+    </type>
+    <type name="Magento\Cron\Model\Config\Data">
+        <plugin name="getJobs" type="\Firebear\ImportExport\Plugin\Config\Data"/>
+    </type>
+    <type name="Firebear\ImportExport\Helper\Data">
+        <plugin name="firebear_importexport_clear_cache_advanced+pricing"
+                type="\Firebear\ImportExport\Plugin\Helper\ClearCacheAdvancedPricing"/>
+    </type>
+    <type name="Magento\CatalogImportExport\Model\Export\RowCustomizer\Composite">
+        <arguments>
+            <argument name="customizers" xsi:type="array">
+                <item name="weeTax" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Tax</item>
+                <item name="bundleProduct" xsi:type="string">Magento\BundleImportExport\Model\Export\RowCustomizer</item>
+                <item name="groupedProduct" xsi:type="string">Magento\GroupedImportExport\Model\Export\RowCustomizer</item>
+                <item name="configurableProduct" xsi:type="string">Magento\ConfigurableImportExport\Model\Export\RowCustomizer</item>
+                <item name="productVideoURL" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\ProductVideo</item>
+                <item name="webkulMarketplace" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\WebkulMarketplace</item>
+                <item name="mageArrayMarketplace" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\MageArrayMarketplace</item>
+                <item name="wyomindAdvancedInventory" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\WyomindAdvancedInventory</item>
+                <item name="magestoreInventory" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\Integrations\Modules\MageStoreInventory</item>
+                <item name="tierPrices" xsi:type="string">Firebear\ImportExport\Model\Export\RowCustomizer\TierPrices</item>
+                <item name="downloadableProduct" xsi:type="string">Firebear\ImportExport\Model\Export\Product\Downloadable\RowCustomizer</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\CatalogImportExport\Model\Export\RowCustomizer\Composite"
+                type="Firebear\ImportExport\Model\Export\RowCustomizer\Composite"/>
+    <preference for="Magento\CatalogImportExport\Model\Import\Product\Validator"
+                type="Firebear\ImportExport\Model\Import\Product\Validator"/>
+    <type name="Firebear\ImportExport\Model\Import\Product\Validator">
+        <plugin name="firebear_importexport_import_product_validator"
+                type="Firebear\ImportExport\Plugin\Model\Import\Product\Validator"/>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="import_job_grid_data_source" xsi:type="string">Firebear\ImportExport\Model\ResourceModel\Job\Grid\Collection</item>
+                <item name="export_job_grid_data_source" xsi:type="string">Firebear\ImportExport\Model\ResourceModel\ExportJob\Grid\Collection</item>
+                <item name="import_history_grid_data_source" xsi:type="string">Firebear\ImportExport\Model\ResourceModel\Import\History\Grid\Collection</item>
+                <item name="export_history_grid_data_source" xsi:type="string">Firebear\ImportExport\Model\ResourceModel\Export\History\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\ResourceModel\Job\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">firebear_import_jobs</argument>
+            <argument name="eventPrefix" xsi:type="string">import_job_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">job_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Firebear\ImpoerExport\Model\ResourceModel\Job</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\ResourceModel\ExportJob\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">firebear_export_jobs</argument>
+            <argument name="eventPrefix" xsi:type="string">export_job_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">exportjob_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Firebear\ImportExport\Model\ResourceModel\ExportJob</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\ResourceModel\Import\History\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">firebear_import_history</argument>
+            <argument name="eventPrefix" xsi:type="string">import_history_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">import_history_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Firebear\ImportExport\Model\ResourceModel\Import\History</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\ResourceModel\Export\History\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">firebear_export_history</argument>
+            <argument name="eventPrefix" xsi:type="string">export_history_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">export_history_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Firebear\ImportExport\Model\ResourceModel\Export\History
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogImportExport\Model\Import\Product\OptionFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">\Firebear\ImportExport\Model\Import\Product\Option</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="importJobRun" xsi:type="object">Firebear\ImportExport\Console\Command\ImportJobRunCommand</item>
+                <item name="importJobRunChain" xsi:type="object">Firebear\ImportExport\Console\Command\ImportJobRunChainCommand</item>
+                <item name="importJobEnable" xsi:type="object">Firebear\ImportExport\Console\Command\ImportJobEnableCommand</item>
+                <item name="importJobDisable" xsi:type="object">Firebear\ImportExport\Console\Command\ImportJobDisableCommand</item>
+                <item name="exportJobRun" xsi:type="object">Firebear\ImportExport\Console\Command\ExportJobRunCommand</item>
+                <item name="exportJobEnable" xsi:type="object">Firebear\ImportExport\Console\Command\ExportJobEnableCommand</item>
+                <item name="exportJobDisable" xsi:type="object">Firebear\ImportExport\Console\Command\ExportJobDisableCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Model\Entity\RepositoryFactory">
+        <arguments>
+            <argument name="entities" xsi:type="array">
+                <item name="Firebear\ImportExport\Api\Data\ExportInterface" xsi:type="string">Firebear\ImportExport\Api\ExportJobRepositoryInterface</item>
+                <item name="Firebear\ImportExport\Api\Data\ImportInterface" xsi:type="string">Firebear\ImportExport\Api\JobRepositoryInterface</item>
+                <item name="Firebear\ImportExport\Api\Data\ImportMappingInterface" xsi:type="string">Firebear\ImportExport\Api\JobMappingRepositoryInterface</item>
+                <item name="Firebear\ImportExport\Api\Data\ImportHistoryInterface" xsi:type="string">Firebear\ImportExport\Api\HistoryRepositoryInterface</item>
+                <item name="Firebear\ImportExport\Api\Data\ExportHistoryInterface" xsi:type="string">Firebear\ImportExport\Api\Export\HistoryRepositoryInterface</item>
+                <item name="Firebear\ImportExport\Api\Data\JobReplacingInterface" xsi:type="string">Firebear\ImportExport\Api\JobReplacingRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Firebear\ImportExport\Api\Data\ExportInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">firebear_export_jobs</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+                <item name="Firebear\ImportExport\Api\Data\ImportInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">firebear_import_jobs</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+                <item name="Firebear\ImportExport\Api\Data\ImportMappingInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">firebear_import_job_mapping</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+                <item name="Firebear\ImportExport\Api\Data\ImportHistoryInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">firebear_import_history</item>
+                    <item name="identifierField" xsi:type="string">history_id</item>
+                </item>
+                <item name="Firebear\ImportExport\Api\Data\ExportHistoryInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">firebear_export_history</item>
+                    <item name="identifierField" xsi:type="string">history_id</item>
+                </item>
+                <item name="Firebear\ImportExport\Api\Data\JobReplacingInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">firebear_import_job_replacing</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Replacement\Option\AttributePool">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="catalog_product" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Catalog\Product\Options\Proxy</item>
+                <item name="catalog_category" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Catalog\Category\Options\Proxy</item>
+                <item name="customer_composite" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\CustomerComposite\Options\Proxy</item>
+                <item name="customer_address" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Customer\Address\Options\Proxy</item>
+                <item name="customer" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Customer\Options\Proxy</item>
+                <item name="cms_page" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\CmsPage\Options\Proxy</item>
+                <item name="cms_block" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\CmsBlock\Options\Proxy</item>
+                <item name="catalog_rule" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\CatalogRule\Options\Proxy</item>
+                <item name="sales_rule" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\SalesRule\Options\Proxy</item>
+                <item name="newsletter_subscriber" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Newsletter\Options\Proxy</item>
+                <item name="search_query" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\SearchTerms\Options\Proxy</item>
+                <item name="search_synonyms" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\SearchSynonyms\Options\Proxy</item>
+                <item name="review" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Review\Options\Proxy</item>
+                <item name="url_rewrite" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\UrlRewrite\Options\Proxy</item>
+                <item name="advanced_pricing" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\AdvancedPricing\Options\Proxy</item>
+                <item name="attribute" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Attribute\Options\Proxy</item>
+                <item name="import_jobs" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\ImportJobs\Options\Proxy</item>
+                <item name="export_jobs" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\ExportJobs\Options\Proxy</item>
+                <item name="widget" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Widget\Options\Proxy</item>
+                <item name="order" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Replace\Attribute\Order\Options\Proxy</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Firebear\ImportExport\Api\Data\ExportInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Firebear\ImportExport\Api\Data\ImportInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Firebear\ImportExport\Api\Data\ImportMappingInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Firebear\ImportExport\Api\Data\ImportHistoryInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Firebear\ImportExport\Api\Data\ExportHistoryInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Firebear\ImportExport\Api\Data\JobReplacingInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="JobRelationsComposite"
+                 type="Magento\Framework\Model\ResourceModel\Db\VersionControl\RelationComposite">
+        <arguments>
+            <argument name="relationProcessors" xsi:type="array">
+                <item name="default" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Job\Relation</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Model\ResourceModel\Job">
+        <arguments>
+            <argument name="entityRelationComposite" xsi:type="object">JobRelationsComposite</argument>
+        </arguments>
+    </type>
+    <virtualType name="PlatformSchemaLocator" type="Firebear\ImportExport\Model\AbstractSchemaLocator">
+        <arguments>
+            <argument name="fileName" xsi:type="string">platforms.xsd</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="PlatformReader" type="Firebear\ImportExport\Model\Source\Config\PlatformReader">
+        <arguments>
+            <argument name="fileName" xsi:type="string">platforms.xml</argument>
+            <argument name="converter" xsi:type="object">Firebear\ImportExport\Model\Source\Platform\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">PlatformSchemaLocator</argument>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/platform" xsi:type="array">
+                    <item name="0" xsi:type="string">name</item>
+                    <item name="1" xsi:type="string">entity</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Model\Source\Platform\Config">
+        <arguments>
+            <argument name="reader" xsi:type="object">PlatformReader</argument>
+            <argument name="cacheId" xsi:type="string">firebear_importexport_platforms_config</argument>
+        </arguments>
+    </type>
+    <virtualType name="TypeFileSchemaLocator" type="Firebear\ImportExport\Model\AbstractSchemaLocator">
+        <arguments>
+            <argument name="fileName" xsi:type="string">format_files.xsd</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="TypeFileReader" type="Firebear\ImportExport\Model\Source\Config\SourceReader">
+        <arguments>
+            <argument name="fileName" xsi:type="string">format_files.xml</argument>
+            <argument name="converter" xsi:type="object">Firebear\ImportExport\Model\Source\Type\File\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">TypeFileSchemaLocator</argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Model\Source\Type\File\Config">
+        <arguments>
+            <argument name="reader" xsi:type="object">TypeFileReader</argument>
+            <argument name="cacheId" xsi:type="string">firebear_importexport_type_file_config</argument>
+        </arguments>
+    </type>
+    <virtualType name="FireMenuSchemaLocator" type="Firebear\ImportExport\Model\AbstractSchemaLocator">
+        <arguments>
+            <argument name="fileName" xsi:type="string">firebear_menu.xsd</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="FireMenuReader" type="Firebear\ImportExport\Model\AbstractReader">
+        <arguments>
+            <argument name="fileName" xsi:type="string">firebear_menu.xml</argument>
+            <argument name="converter" xsi:type="object">Firebear\ImportExport\Model\Source\Menu\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">FireMenuSchemaLocator</argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Model\Source\Menu\Config">
+        <arguments>
+            <argument name="reader" xsi:type="object">FireMenuReader</argument>
+            <argument name="cacheId" xsi:type="string">firebear_importexport_menu_config</argument>
+        </arguments>
+    </type>
+    <virtualType name="ImportSchemaLocator" type="Firebear\ImportExport\Model\AbstractSchemaLocator">
+        <arguments>
+            <argument name="fileName" xsi:type="string">firebear_import.xsd</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ImportReader" type="Firebear\ImportExport\Model\AbstractReader">
+        <arguments>
+            <argument name="fileName" xsi:type="string">firebear_import.xml</argument>
+            <argument name="converter" xsi:type="object">Firebear\ImportExport\Model\Source\Import\Config\Converter</argument>
+            <argument name="schemaLocator" xsi:type="object">ImportSchemaLocator</argument>
+            <argument name="idAttributes" xsi:type="array">
+                <item name="/config/entity" xsi:type="string">name</item>
+                <item name="/config/entityType" xsi:type="array">
+                    <item name="0" xsi:type="string">entity</item>
+                    <item name="1" xsi:type="string">name</item>
+                </item>
+                <item name="/config/relatedIndexer" xsi:type="array">
+                    <item name="0" xsi:type="string">entity</item>
+                    <item name="1" xsi:type="string">name</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Firebear\ImportExport\Model\Source\Import\Config">
+        <arguments>
+            <argument name="reader" xsi:type="object">ImportReader</argument>
+            <argument name="cacheId" xsi:type="string">firebear_importexport_import_config</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Attribute">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="data_source_model" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Import\Data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\UrlRewrite">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="data_source_model" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Import\Data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Widget">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="data_source_model" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Import\Data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\NewsletterSubscriber">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="data_source_model" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Import\Data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\SalesRule">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="data_source_model" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Import\Data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Review">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="data_source_model" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Import\Data</item>
+            </argument>
+            <argument name="configurableProductResource" xsi:type="object">Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable\Proxy</argument>
+            <argument name="productResource" xsi:type="object">Magento\Catalog\Model\ResourceModel\Product\Proxy</argument>
+            <argument name="bundleProduct" xsi:type="object">Magento\Bundle\Model\Product\Type\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\CatalogRule">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="data_source_model" xsi:type="object">Firebear\ImportExport\Model\ResourceModel\Import\Data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Export\Order">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="attribute_collection" xsi:type="object">Magento\Catalog\Model\ResourceModel\Product\Attribute\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Asset\Minification">
+        <plugin name="excludeFilesFromMinification"
+                type="Firebear\ImportExport\Plugin\Framework\View\Asset\ExcludeFilesFromMinification"/>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Product\Type\Downloadable">
+        <arguments>
+            <argument name="uploaderHelper" xsi:type="object">Firebear\ImportExport\Helper\Uploader</argument>
+        </arguments>
+    </type>
+    <type name="Magento\MediaGalleryIntegration\Plugin\SaveImageInformation">
+        <arguments>
+            <argument name="imageExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Firebear\ImportExport\Api\UrlKeyManagerInterface"
+                type="Firebear\ImportExport\Model\Import\Product\UrlKeyManager" />
+    <type name="Firebear\ImportExport\Model\Import\UrlRewrite\EntityHandler">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="product" xsi:type="object">Firebear\ImportExport\Model\Import\UrlRewrite\EntityHandler\Product</item>
+                <item name="category" xsi:type="object">Firebear\ImportExport\Model\Import\UrlRewrite\EntityHandler\Category</item>
+                <item name="cms" xsi:type="object">Firebear\ImportExport\Model\Import\UrlRewrite\EntityHandler\Cms</item>
+                <item name="custom" xsi:type="object">Firebear\ImportExport\Model\Import\UrlRewrite\EntityHandler\CustomUrlRewrite</item>
+                <item name="common" xsi:type="object">Firebear\ImportExport\Model\Import\UrlRewrite\EntityHandler\Common</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Translation\TranslateAbstract">
+        <arguments>
+            <argument name="curl" xsi:type="object">Magento\Framework\HTTP\Client\Curl\Proxy</argument>
+            <argument name="serializer" xsi:type="object">Magento\Framework\Serialize\SerializerInterface\Proxy</argument>
+            <argument name="storeManager" xsi:type="object">Magento\Store\Model\StoreManagerInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Translation\Translator">
+        <arguments>
+            <argument name="translators" xsi:type="array">
+                <item name="google_free" xsi:type="object">Firebear\ImportExport\Model\Translation\Google\Free</item>
+                <item name="google_paid" xsi:type="object">Firebear\ImportExport\Model\Translation\Google\Paid</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Framework\DB\Adapter\Pdo\Mysql" type="Firebear\ImportExport\Setup\Db\Adapter\Pdo\Mysql" />
+    <type name="Magento\Framework\Setup\SchemaListener">
+        <arguments>
+            <argument name="definitionMappers" xsi:type="array">
+                <item name="integer" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\IntegerDefinition</item>
+                <item name="tinyint" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\IntegerDefinition</item>
+                <item name="smallint" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\IntegerDefinition</item>
+                <item name="mediumint" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\IntegerDefinition</item>
+                <item name="bigint" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\IntegerDefinition</item>
+                <item name="decimal" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\RealDefinition</item>
+                <item name="float" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\RealDefinition</item>
+                <item name="numeric" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\RealDefinition</item>
+                <item name="text" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="mediumtext" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="longtext" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="blob" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="mediumblob" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="longblob" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="varbinary" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="varchar" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TextBlobDefinition</item>
+                <item name="timestamp" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TimestampDefinition</item>
+                <item name="datetime" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\TimestampDefinition</item>
+                <item name="date" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\DateDefinition</item>
+                <item name="boolean" xsi:type="object">Magento\Framework\Setup\SchemaListenerDefinition\BooleanDefinition</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Console\Command\ImportJobAbstractCommand">
+        <arguments>
+            <argument name="repository" xsi:type="object">Firebear\ImportExport\Api\JobRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Helper\Data">
+        <arguments>
+            <argument name="historyRepository" xsi:type="object">Firebear\ImportExport\Api\HistoryRepositoryInterface\Proxy</argument>
+            <argument name="historyExRepository" xsi:type="object">Firebear\ImportExport\Api\Export\HistoryRepositoryInterface\Proxy</argument>
+            <argument name="timezone" xsi:type="object">Magento\Framework\Stdlib\DateTime\TimezoneInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Product\Integration\MageArrayMarketplace">
+        <arguments>
+            <argument name="stockItem" xsi:type="object">Magento\CatalogInventory\Api\StockStateInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Product\Integration\WyomindAdvancedInventory">
+        <arguments>
+            <argument name="stockRegistry" xsi:type="object">Magento\CatalogInventory\Model\StockRegistry\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Export\FilterProcessor\FilterProcessorAggregator">
+        <arguments>
+            <argument name="handler" xsi:type="array">
+                <item name="number" xsi:type="object">Firebear\ImportExport\Model\Export\FilterProcessor\Filter\Number</item>
+                <item name="select" xsi:type="object">Firebear\ImportExport\Model\Export\FilterProcessor\Filter\Select</item>
+                <item name="input" xsi:type="object">Firebear\ImportExport\Model\Export\FilterProcessor\Filter\Varchar</item>
+                <item name="date" xsi:type="object">Firebear\ImportExport\Model\Export\FilterProcessor\Filter\Date</item>
+                <item name="lastentity" xsi:type="object">Firebear\ImportExport\Model\Export\FilterProcessor\Filter\Lastentity</item>
+                <item name="scope" xsi:type="object">Firebear\ImportExport\Model\Export\FilterProcessor\Filter\Scope</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Import\Product">
+        <arguments>
+            <argument name="productCollectionFactory" xsi:type="object">Magento\Catalog\Model\ResourceModel\Product\CollectionFactory\Proxy</argument>
+            <argument name="translator" xsi:type="object">Firebear\ImportExport\Model\Translation\Translator\Proxy</argument>
+            <argument name="integrations" xsi:type="array">
+                <item name="MageArray_MaMarketPlace" xsi:type="object">Firebear\ImportExport\Model\Import\Product\Integration\MageArrayMarketplace</item>
+                <item name="Webkul_Marketplace" xsi:type="object">Firebear\ImportExport\Model\Import\Product\Integration\WebkulMarketplace</item>
+                <item name="Wyomind_AdvancedInventory" xsi:type="object">Firebear\ImportExport\Model\Import\Product\Integration\WyomindAdvancedInventory</item>
+                <item name="Magestore_InventorySuccess" xsi:type="object">Firebear\ImportExport\Model\Import\Product\Integration\MageStoreInventorySuccess</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\CatalogImportExport\Model\Import\Product\ImageTypeProcessor">
+        <plugin name="video_url"
+                type="Firebear\ImportExport\Plugin\Model\Import\Product\ImageTypeProcessor"/>
+    </type>
+    <type name="Firebear\ImportExport\Controller\Adminhtml\Context">
+        <arguments>
+            <argument name="repository" xsi:type="object">Firebear\ImportExport\Api\JobRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Controller\Adminhtml\Export\Context">
+        <arguments>
+            <argument name="repository" xsi:type="object">Firebear\ImportExport\Api\ExportJobRepositoryInterface\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Plugin\Model\Import\FlushCacheByProductIds">
+        <arguments>
+            <argument name="productCacheTag" xsi:type="const">Magento\Catalog\Model\Product::CACHE_TAG</argument>
+        </arguments>
+    </type>
+    <type name="Magento\InventoryCache\Model\FlushCacheByProductIds">
+        <plugin name="firebear-import-flush-cache-by-product-ids"
+                type="Firebear\ImportExport\Plugin\Model\Import\FlushCacheByProductIds"/>
+    </type>
+    <type name="Firebear\ImportExport\Model\Email\Sender">
+        <arguments>
+            <argument name="options" xsi:type="array">
+                <item name="import" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Import\Source\Entity\Options\Proxy</item>
+                <item name="export" xsi:type="object">Firebear\ImportExport\Ui\Component\Listing\Column\Entity\Export\Options\Proxy</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Email\EmailMessageInterfaceFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Magento\Framework\Mail\EmailMessageInterface</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Email\MimeMessageInterfaceFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Magento\Framework\Mail\MimeMessageInterface</argument>
+        </arguments>
+    </type>
+    <type name="Firebear\ImportExport\Model\Email\MimePartInterfaceFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Magento\Framework\Mail\MimePartInterface</argument>
+        </arguments>
+    </type>
+    <preference for="Firebear\ImportExport\Model\Import\StockItemImporterInterface"
+                type="Firebear\ImportExport\Model\Import\StockItemImporter"/>
+    <type name="Magento\CatalogImportExport\Model\StockItemImporterInterface">
+        <plugin name="importStockItemDataForSourceItem" disabled="true" />
+        <plugin name="importStockItemDataForSourceItemUpdate" type="Firebear\ImportExport\Plugin\Import\SourceItemImporter" />
+    </type>
+    <type name="Magento\Catalog\Model\Product\Action">
+        <plugin name="fb_update_attributes"  type="Firebear\ImportExport\Plugin\Import\Action" />
+    </type>
+    <type name="Magento\InventoryCatalog\Model\BulkSourceUnassign">
+        <plugin name="fb_update_source_unassign"  type="Firebear\ImportExport\Plugin\Import\BulkSource" />
+    </type>
+    <type name="Magento\InventoryCatalog\Model\BulkSourceAssign">
+        <plugin name="fb_update_source_assign"  type="Firebear\ImportExport\Plugin\Import\BulkSource" />
+    </type>
+    <type name="Magento\InventoryCatalog\Model\BulkInventoryTransfer">
+        <plugin name="fb_update_source_transfer"  type="Firebear\ImportExport\Plugin\Import\BulkSource" />
+    </type>
+    <type name="Firebear\ImportExport\Model\Export\Product\AdditionalFieldsPool">
+        <arguments>
+            <argument name="fieldsPool" xsi:type="array">
+                <item name="msi" xsi:type="object">Firebear\ImportExport\Model\Export\Product\FieldsPool\Msi</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\InventoryCatalog\Model\IsSingleSourceMode">
+        <plugin name="firebear_importexport_IsSingleSourceMode_cache_process"
+                type="\Firebear\ImportExport\Plugin\InventoryCatalogIsSingleSourceMode" sortOrder="10" />
+    </type>
+    <type name="Magento\Framework\Serialize\Serializer\Json">
+        <plugin name="Firebear_ImportExport_Plugin_Magento_Framework_Serialize_Serializer_Json"
+                type="Firebear\ImportExport\Plugin\Magento\Framework\Serialize\Serializer\Json"
+                sortOrder="10" disabled="false"/>
+    </type>
+    <preference for="Magento\ImportExport\Model\Import\ErrorProcessing\ProcessingErrorAggregator"
+                type="Firebear\ImportExport\Model\Import\ErrorProcessing\ProcessingErrorAggregatorExtended"/>
+</config>

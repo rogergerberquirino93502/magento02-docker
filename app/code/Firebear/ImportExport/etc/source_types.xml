@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2021 Firebear Studio. All rights reserved.
+ * @author: Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="source_types.xsd">
+    <type name="file" label="File" modelInstance="Firebear\ImportExport\Model\Source\Type\File" sortOrder="10">
+        <field name="file_upload" component="Firebear_ImportExport/js/form/import-upload-file" componentType="fileUploader" template="Firebear_ImportExport/form/element/uploader/uploader" url="import/job/fileload" id="file_upload" label="File Upload" type="text" required="false"/>
+        <field name="file_path" id="file_path" label="File Path" type="text" required="true" notice="The file must match the format. Use relative path to Magento installation, e.g. var/import/products.csv (Make sure folder have correct write permissions - 775 , for more details please see Magento 2 Permissions guide)" validation="no-whitespace" component="Firebear_ImportExport/js/form/import-path-file"/>
+        <field name="import_images_file_dir" id="file_import_images_file_dir" label="Images File Directory" type="text" required="false" notice="Use relative path to Magento installation, e.g. var/import/images/"/>
+    </type>
+    <type name="dropbox" label="Dropbox" modelInstance="Firebear\ImportExport\Model\Source\Type\Dropbox" sortOrder="20">
+        <field name="dropbox_file_path" id="file_path" label="File Path" type="text" required="true" notice="The file must match the format." validation="validate-no-empty" component="Firebear_ImportExport/js/form/import-path-file"/>
+        <field name="access_token" id="access_token" label="Access Token" type="text" required="true" />
+        <field name="remote_images_file_dir" id="remote_images_file_dir" label="Remote Images Directory" type="text" notice="Use absolute path, e.g. /import/images/"/>
+    </type>
+    <type name="ftp" label="Ftp" modelInstance="Firebear\ImportExport\Model\Source\Type\Ftp" sortOrder="30">
+        <field name="ftp_file_path" id="file_path" label="File Path" type="text" required="true" notice="The file must match the format." validation="no-whitespace" component="Firebear_ImportExport/js/form/import-path-file"/>
+        <field name="host" id="host" label="Host" type="text" required="true" />
+        <field name="port" id="port" label="Port" type="text" required="true" />
+        <field name="user" id="username" label="Username" type="text" required="true" template="Firebear_ImportExport/form/element/input-user"/>
+        <field name="password" id="password" label="Password" type="password" required="true" template="Firebear_ImportExport/form/element/input-pass"/>
+        <field name="remote_images_file_dir" id="remote_images_file_dir" label="Remote Images Directory" type="text" notice="Use absolute path, e.g. /home/www/images/"/>
+    </type>
+    <type name="sftp" label="Sftp" modelInstance="Firebear\ImportExport\Model\Source\Type\Sftp" sortOrder="40">
+        <field name="sftp_file_path" id="file_path" label="File Path" type="text" required="true" notice="The file must match the format." validation="no-whitespace" component="Firebear_ImportExport/js/form/import-path-file"/>
+        <field name="host" id="host" label="Host" type="text" required="true" />
+        <field name="port" id="port" label="Port" type="text" required="true" />
+        <field name="username" id="username" label="Username" type="text" required="true" template="Firebear_ImportExport/form/element/input-user"/>
+        <field name="password" id="password" label="Password" type="password" required="true" template="Firebear_ImportExport/form/element/input-pass"/>
+        <field name="remote_images_file_dir" id="remote_images_file_dir" label="Remote Images Directory" type="text" notice="Use absolute path, e.g. /home/www/images/"/>
+    </type>
+    <type name="url" label="Url" modelInstance="Firebear\ImportExport\Model\Source\Type\Url" sortOrder="50">
+        <field name="url_file_path" id="file_path" label="Url" type="text" required="true" notice="The file must match import file format." validation="no-whitespace url2" component="Firebear_ImportExport/js/form/import-path-file"/>
+    </type>
+    <type name="google" label="Google Sheet" modelInstance="Firebear\ImportExport\Model\Source\Type\Google" sortOrder="60" depends="csv">
+        <field name="google_file_path" id="file_path" label="Url" type="text" required="true" notice="The file must match import file format." validation="no-whitespace url2" component="Firebear_ImportExport/js/form/import-google-path-file"/>
+        <field name="import_images_file_dir" id="file_import_images_file_dir" label="Images File Directory" type="text" notice="Use relative path to Magento installation, e.g. var/import/images/"/>
+    </type>
+    <type name="rest" label="REST API" modelInstance="Firebear\ImportExport\Model\Source\Type\Rest" exists="\RestClient" sortOrder="70" depends="json,xml" api="1">
+        <field name="request_url" id="request_url" label="API Call URL" type="text" required="true" notice="API Call URL" validation="no-whitespace url2"/>
+        <field name="request_method" id="request_method" label="Request Method" type="text" required="true" formElement="select" component="Firebear_ImportExport/js/form/import-rest-select" options="Firebear\ImportExport\Model\Job\Source\RestMethod" source_options="Firebear\ImportExport\Model\Job\Source\RestMethod"/>
+        <field name="request_options" id="request_options" label="JSON Options" type="text" required="true" notice="JSON Options" validation="validate-no-empty required-entry" component="Firebear_ImportExport/js/form/import-rest-textarea"/>
+        <field name="request_body" id="request_body" label="JSON Body Request" type="text" required="false" notice="JSON Body Request"  component="Firebear_ImportExport/js/form/import-rest-textarea"/>
+    </type>
+    <type name="soap" label="SOAP API" modelInstance="Firebear\ImportExport\Model\Source\Type\Soap" sortOrder="80" depends="xml" api="1">
+        <field name="soap_version" id="soap_version" label="SOAP Version" type="text" required="true" formElement="select" component="Firebear_ImportExport/js/form/import-soap-select" options="Firebear\ImportExport\Model\Job\Source\SoapVersion" source_options="Firebear\ImportExport\Model\Job\Source\SoapVersion"/>
+        <field name="request_url" id="request_url" label="Web Service Url" type="text" required="true" notice="Web Service Url" validation="no-whitespace url2"/>
+        <field name="soap_call" id="soap_call" label="Call Function" type="text" required="true" notice="End point of Request" validation="no-whitespace"/>
+        <field name="options" id="options" label="SOAP Options" type="text" required="false" notice="SOAP Options" component="Firebear_ImportExport/js/form/import-rest-textarea"/>
+    </type>
+    <type name="googledrive" label="Google Drive" modelInstance="Firebear\ImportExport\Model\Source\Type\Googledrive" exists="\Google\Auth\OAuth2"  sortOrder="20">
+        <field name="googledrive_file_path" id="file_path" label="File Path" type="text" required="true" notice="Specify the import file path on Google Drive, e.g. import/products.csv" validation="no-whitespace" component="Firebear_ImportExport/js/form/import-path-file"/>
+        <field name="signing_key_file" id="signing_key_file" label="Service Account Key File Upload" type="text" required="true" component="Firebear_ImportExport/js/form/element/signing-key-file-uploader" componentType="fileUploader" template="Firebear_ImportExport/form/element/uploader/uploader" url="import/job/googleKeyload"/>
+        <field name="signing_key_file_path" id="signing_key_file_path" label="Service Account Key File Path" type="hidden" required="true" component="Firebear_ImportExport/js/form/import-path-file"  template="Firebear_ImportExport/form/element/hidden"/>
+        <field name="googledrive_import_images_file_dir" id="file_import_images_file_dir" label="Images File Directory" type="text" notice="Specify the images folder path on Google Drive. This folder must be in the same folder as the import file."/>
+    </type>
+    <type name="onedrive" label="One Drive" modelInstance="Firebear\ImportExport\Model\Source\Type\Onedrive" exists="\Microsoft\Graph\Graph"  sortOrder="90">
+        <field name="onedrive_file_path" id="file_path" label="File Path" type="text" required="true" notice="Specify the import file path on One Drive, e.g. /import/products.csv" validation="no-whitespace" component="Firebear_ImportExport/js/form/import-path-file"/>
+        <field name="onedrive_import_images_file_dir" id="file_import_images_file_dir" label="Images File Directory" type="text" notice="Specify the images folder path on One Drive. For example: /import/"/>
+    </type>
+</config>

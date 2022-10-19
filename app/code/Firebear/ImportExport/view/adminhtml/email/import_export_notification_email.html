@@ -1,0 +1,20 @@
+<!--
+/**
+ * @copyright: Copyright © 2020 Firebear Studio. All rights reserved.
+ * @author : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<!--@subject {{trans "%operation %title %status" operation=$operation title=$job.getTitle() status=$status}} @-->
+
+<h1>{{trans "%operation %title %status" operation=$operation title=$job.getTitle() status=$status}}</h1>
+<ul>
+    <li>
+        <strong>{{trans "Operation name:"}}</strong> {{var operation}}
+    </li>
+    <li>
+        <strong>{{trans "Entity type:"}}</strong> {{var entity}}
+    </li>
+    <li>
+        <strong>{{trans "Status:"}}</strong> {{var status}}
+    </li>
+</ul>

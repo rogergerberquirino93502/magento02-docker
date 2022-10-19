@@ -1,0 +1,193 @@
+definitions:
+  services:
+    elasticsearch:
+      image: public.ecr.aws/l5y4a4r6/elasticsearch:7.13.1
+    mysql:
+      image: mysql:5.7
+      variables:
+        MYSQL_DATABASE: magento
+        MYSQL_ROOT_PASSWORD: tmp
+    mysql-int:
+      image: mysql:5.7
+      variables:
+        MYSQL_DATABASE: magento_integration_tests
+        MYSQL_ROOT_PASSWORD: 123123q
+    rabbitmq:
+      image: rabbitmq
+pipelines:
+  pull-requests:
+    '**':
+      - parallel:
+          - step:
+              name: Check codestyle
+              image: extdn/magento-coding-standard-action
+              script:
+                - /root/.composer/vendor/bin/phpcs -p --severity=1 --standard=dev/codesniffer/ruleset.xml ./
+                - /root/.composer/vendor/bin/phpcs -p --severity=1 --standard=dev/codesniffer/ruleset_addon.xml ./
+          - step:
+              size: 1x
+              name: dicompile&phpstan m2.4.2
+              image: public.ecr.aws/l5y4a4r6/php:7.4
+              services:
+                - mysql
+                - elasticsearch
+              script:
+                - M_VERSION=2.4.2
+                - if grep -q 'magento enterprise edition' ${BITBUCKET_CLONE_DIR}/composer.json; then EDITION=ee; else EDITION=ce; fi
+                - mc cp bear/firebear-archive/${M_VERSION}-${EDITION}.tar.gz /tmp/
+                - tar -xf /tmp/${M_VERSION}-${EDITION}.tar.gz; mv ${M_VERSION}-${EDITION} /app
+                - cd /app
+                - cp -rf ./composer.phar /usr/local/bin/composer
+                - composer config repositories.firebear path ${BITBUCKET_CLONE_DIR}
+                - composer config --unset repositories.0
+                - composer config repositories.0 "${repo}"
+                - composer config minimum-stability dev
+                - composer config -g http-basic.repo.magento.com $MAGENTO_AUTH_LOGIN $MAGENTO_AUTH_PASS
+                - COMPOSER_MIRROR_PATH_REPOS=1 COMPOSER_MEMORY_LIMIT=-1 composer require "firebear/importexport:*"
+                - curl -s https://raw.githubusercontent.com/firebearstudio/pipeline-scripts/master/phpstan.neon -o /tmp/phpstan.neon
+                - bin/magento setup:install
+                  "--search-engine" "elasticsearch7"
+                  "--admin-firstname" "admin"
+                  "--admin-lastname" "admin"
+                  "--admin-email" "admin@example.com"
+                  "--admin-user" "admin"
+                  "--admin-password" "waq7MPmYBSkwkgXt"
+                  "--elasticsearch-host" "127.0.0.1"
+                  "--elasticsearch-port" "9200"
+                  "--no-interaction"
+                  "--db-host" "127.0.0.1:3306"
+                  "--db-name" "magento"
+                  "--db-user" "root"
+                  "--db-password" "tmp"
+                - bin/magento module:enable --all
+                - bin/magento module:disable "Magento_TwoFactorAuth"
+                - bin/magento setup:di:compile
+                - bin/magento setup:upgrade --keep-generated
+                - vendor/bin/phpstan analyse --no-progress -c /tmp/phpstan.neon vendor/firebear/importexport
+          - step:
+              size: 2x
+              name: dicompile&phpstan m2.4.1
+              image: public.ecr.aws/l5y4a4r6/php:7.4
+              services:
+                - mysql
+                - elasticsearch
+              script:
+                - M_VERSION=2.4.1
+                - if grep -q 'magento enterprise edition' ${BITBUCKET_CLONE_DIR}/composer.json; then EDITION=ee; else EDITION=ce; fi
+                - mc cp bear/firebear-archive/${M_VERSION}-${EDITION}.tar.gz /tmp/
+                - tar -xf /tmp/${M_VERSION}-${EDITION}.tar.gz; mv ${M_VERSION}-${EDITION} /app
+                - cd /app
+                - cp -rf ./composer.phar /usr/local/bin/composer
+                - composer config repositories.firebear path ${BITBUCKET_CLONE_DIR}
+                - composer config --unset repositories.0
+                - composer config repositories.0 "${repo}"
+                - composer config minimum-stability dev
+                - composer config -g http-basic.repo.magento.com $MAGENTO_AUTH_LOGIN $MAGENTO_AUTH_PASS
+                - COMPOSER_MIRROR_PATH_REPOS=1 COMPOSER_MEMORY_LIMIT=-1 composer require "firebear/importexport:*"
+                - curl -s https://raw.githubusercontent.com/firebearstudio/pipeline-scripts/master/phpstan.neon -o /tmp/phpstan.neon
+                - bin/magento setup:install
+                  "--search-engine" "elasticsearch7"
+                  "--admin-firstname" "admin"
+                  "--admin-lastname" "admin"
+                  "--admin-email" "admin@example.com"
+                  "--admin-user" "admin"
+                  "--admin-password" "waq7MPmYBSkwkgXt"
+                  "--elasticsearch-host" "127.0.0.1"
+                  "--elasticsearch-port" "9200"
+                  "--no-interaction"
+                  "--db-host" "127.0.0.1:3306"
+                  "--db-name" "magento"
+                  "--db-user" "root"
+                  "--db-password" "tmp"
+                - bin/magento module:enable --all
+                - bin/magento module:disable "Magento_TwoFactorAuth"
+                - bin/magento setup:di:compile
+                - bin/magento setup:upgrade --keep-generated
+                - vendor/bin/phpstan analyse --no-progress -c /tmp/phpstan.neon vendor/firebear/importexport
+          - step:
+              name: integrations test m2.4.2
+              image: public.ecr.aws/l5y4a4r6/php:7.4
+              services:
+                - mysql-int
+                - elasticsearch
+                - rabbitmq
+              script:
+                - M_VERSION=2.4.2
+                - if grep -q 'magento enterprise edition' ${BITBUCKET_CLONE_DIR}/composer.json; then EDITION=ee; else EDITION=ce; fi
+                - mc cp bear/firebear-archive/${M_VERSION}-${EDITION}.tar.gz /tmp/
+                - tar -xf /tmp/${M_VERSION}-${EDITION}.tar.gz; mv ${M_VERSION}-${EDITION} /app
+                - cd /app
+                - cp -rf ./composer.phar /usr/local/bin/composer
+                - composer config repositories.firebear path ${BITBUCKET_CLONE_DIR}
+                - composer config --unset repositories.0
+                - composer config repositories.0 "${repo}"
+                - composer config minimum-stability dev
+                - composer config -g http-basic.repo.magento.com $MAGENTO_AUTH_LOGIN $MAGENTO_AUTH_PASS
+                - COMPOSER_MIRROR_PATH_REPOS=1 COMPOSER_MEMORY_LIMIT=-1 composer require "firebear/importexport:*"
+                - cd dev/tests/integration
+                - cp -rf phpunit.xml.dist phpunit.xml
+                - cp -rf etc/install-config-mysql.php.dist etc/install-config-mysql.php
+                - sed -i 's/localhost/127.0.0.1/g' etc/install-config-mysql.php
+                - sed -i "s#../../../app/code/\*/\*/Test/Integration#../../../vendor/firebear/importexport/Test/Integration#g" phpunit.xml
+                - sed -i '/<directory>testsuite<\/directory>/d' phpunit.xml
+                - ../../../vendor/bin/phpunit --testsuite "Magento Integration Tests Real Suite" --log-junit ${BITBUCKET_CLONE_DIR}/test-reports/junit.xml
+    custom:
+      manual_run_deploy: #name of this pipeline
+        - variables:          #list variable names under here
+            - name: magento_version
+        - step:
+            services:
+              - docker
+            name: deploy
+            image: python:3.7.4-alpine3.10
+            script:
+              - apk add curl bash openssl
+              - IMAGE="181883251719.dkr.ecr.us-east-2.amazonaws.com/magento"
+              - TAG="${magento_version}-${BITBUCKET_COMMIT}"
+              - VERSION=`echo ${magento_version} | tr "." "-"`
+              - DOMAIN="${BITBUCKET_BRANCH}-${VERSION}-ce"
+              - docker build . --build-arg MAGENTO_AUTH_LOGIN="$REPO_MAGENTO_LOGIN" --build-arg MAGENTO_AUTH_PASS="$REPO_MAGENTO_PASS" --build-arg VERSION="${magento_version}" --tag $IMAGE:$TAG
+              - pip3 install awscli
+              - aws configure set aws_access_key_id "${AWS_ACCESS_KEY}"
+              - aws configure set aws_secret_access_key "${AWS_SECRET_KEY}"
+              - eval $(aws ecr get-login --no-include-email --region us-east-2 | sed 's;https://;;g')
+              - docker push $IMAGE:$TAG
+              - aws eks --region us-east-2 update-kubeconfig --name firebear
+              - curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+              - chmod +x ./kubectl
+              - ./kubectl delete ns ${DOMAIN} --ignore-not-found=true
+              - curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+              - chmod 700 get_helm.sh && ./get_helm.sh
+              - helm repo add bitnami https://charts.bitnami.com/bitnami
+              - helm repo update
+              - >
+                helm upgrade --install --timeout 6m bear bitnami/magento
+                --set "magentoHost=${DOMAIN}.ds1.firebearstudio.com"
+                --set "ingress.hostname=${DOMAIN}.ds1.firebearstudio.com"
+                --set "image.tag=$TAG"
+                --create-namespace -n${DOMAIN} -f values.yaml
+  branches:
+      develop:
+        - parallel:
+          - step:
+              name: Deploy develop stand (CE 2.4.2)
+              script:
+                - ssh -o StrictHostKeyChecking=No $DEVELOP_SERVER "/chroot/home/a0563af8/scripts/update.sh develop-gold.dev.firebearstudio.com $BITBUCKET_BRANCH"
+      ee-develop:
+        - parallel:
+          - step:
+              name: Deploy ee-develop stand (EE 2.4.2)
+              script:
+                - ssh -o StrictHostKeyChecking=No $DEVELOP_SERVER "/chroot/home/a0563af8/scripts/update.sh develop-alpha.dev.firebearstudio.com $BITBUCKET_BRANCH"
+      release/*:
+        - parallel:
+            - step:
+                name: Deploy release/* stand (CE 2.4.1)
+                script:
+                  - ssh -o StrictHostKeyChecking=No $DEVELOP_SERVER "/chroot/home/a0563af8/scripts/update.sh 54a8cf2e1b.nxcli.net $BITBUCKET_BRANCH"
+      ee-release/*:
+        - parallel:
+            - step:
+                name: Deploy ee-release/* stand (EE 2.4.0)
+                script:
+                  - ssh -o StrictHostKeyChecking=No $DEVELOP_SERVER "/chroot/home/a0563af8/scripts/update.sh develop-cypress.dev.firebearstudio.com $BITBUCKET_BRANCH"

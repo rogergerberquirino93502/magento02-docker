@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_after">
+        <observer name="Firebear_ImportExport" instance="Firebear\ImportExport\Observer\ExportJobObserver" />
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="Firebear_ImportExport" instance="Firebear\ImportExport\Observer\ExportJobObserver" />
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="Firebear_ImportExport" instance="Firebear\ImportExport\Observer\ExportJobObserver" />
+    </event>
+    <event name="catalog_category_import_bunch_save_after">
+        <observer name="catalog_category_after" instance="Firebear\ImportExport\Observer\AfterCategoryDataObserver"/>
+    </event>
+    <event name="catalog_product_import_bunch_save_after">
+        <observer name="ddg_catalog_product_import_bunch_save_after" disabled="true"/>
+        <observer name="ddg_catalog_product_import_bunch_save_after_update"
+                  instance="Firebear\ImportExport\Observer\Catalog\ReimportBunch"/>
+        <observer name="catalog_product_msi_import_bunch_save_after"
+                  instance="Firebear\ImportExport\Observer\AfterSaveProductMsiObserver"/>
+    </event>
+    <event name="catalog_product_delete_after_done">
+        <observer
+            name="catalog_product_delete_clear_cache_import"
+            instance="Firebear\ImportExport\Observer\Catalog\ClearCacheAfterDeleteProduct"
+        />
+    </event>
+    <event name="catalog_product_save_commit_after">
+        <observer
+            name="catalog_product_save_commit_cache_import"
+            instance="Firebear\ImportExport\Observer\Catalog\ClearCacheAfterDeleteProduct"
+        />
+    </event>
+</config>

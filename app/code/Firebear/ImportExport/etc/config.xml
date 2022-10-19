@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <firebear_importexport>
+            <general>
+                <create_attributes>1</create_attributes>
+                <supplier_code> </supplier_code>
+                <debug>1</debug>
+                <encryption>1</encryption>
+            </general>
+            <import_config>
+                <general_file_bunch_size>100</general_file_bunch_size>
+                <import_format_v2_bunch_size>100</import_format_v2_bunch_size>
+                <enable_db_log_storage>0</enable_db_log_storage>
+            </import_config>
+            <ftp>
+                <port>21</port>
+            </ftp>
+            <page_size>
+                <attribute>5000</attribute>
+            </page_size>
+            <event>
+                <available>catalog_product_save_after,sales_order_save_after,checkout_submit_all_after</available>
+            </event>
+            <xslt>
+                <handle_processor_errors>0</handle_processor_errors>
+            </xslt>
+        </firebear_importexport>
+        <general>
+            <file>
+                <bunch_size>100</bunch_size>
+            </file>
+        </general>
+        <import>
+            <format_v2>
+                <bunch_size>100</bunch_size>
+            </format_v2>
+        </import>
+    </default>
+</config>

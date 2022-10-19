@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Firebear\ImportExport\Block\Adminhtml\Import\History\Before" template="Firebear_ImportExport::history/form/before.phtml" name="history.form.before" as="form_before" before="adminhtml.import.history.container"/>
+        </referenceContainer>
+    </body>
+</page>

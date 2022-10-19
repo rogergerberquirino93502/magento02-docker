@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
+    <broker topic="import_export.import_db" exchange="magento-db" type="db">
+        <queue name="import_export.import_db"
+               consumer="import_export.import_db"
+               consumerInstance="Magento\Framework\MessageQueue\Consumer"
+               handler="Firebear\ImportExport\Model\QueueMessage\Image\ImportQueue::process"
+        />
+    </broker>
+</config>

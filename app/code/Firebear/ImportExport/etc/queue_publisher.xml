@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/publisher.xsd">
+    <publisher topic="import_export.import_db">
+        <connection name="db" exchange="magento-db" />
+    </publisher>
+    <publisher topic="import_export.import_amqp">
+        <connection name="amqp" exchange="magento-amqp" />
+    </publisher>
+</config>

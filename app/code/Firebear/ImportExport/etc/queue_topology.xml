@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd" >
+    <exchange name="magento-amqp" type="topic" connection="amqp">
+        <binding id="import_export_amqp"   topic="import_export.import_amqp"  destinationType="queue" destination="import_export_import_amqp"/>
+    </exchange>
+</config>

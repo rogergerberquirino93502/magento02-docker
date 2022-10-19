@@ -1,0 +1,43 @@
+<?php
+/**
+ * Review block template
+ *
+ * @author    Sirv Limited <support@sirv.com>
+ * @copyright Copyright (c) 2018-2022 Sirv Limited <support@sirv.com>. All rights reserved
+ * @license   https://sirv.com/
+ * @link      https://sirv.com/integration/magento/
+ *
+ * @codingStandardsIgnoreFile
+ */
+
+/**
+ * @var $block \Sirv\Magento2\Block\Adminhtml\Review
+ */
+
+$reviewLink = 'https://marketplace.magento.com/sirv-magento2.html#bazaarvoice.reviews.tab';
+?>
+<?php if ($block->doDisplayBanner()): ?>
+<div class="sirv-banner-wrapper">
+    <div class="sirv-banner sirv-review-banner">
+        <div class="sirv-review-banner-row">
+            <div class="sirv-review-banner-icon"></div>
+            <div class="sirv-review-banner-desc">We noticed you've been using Sirv for some time. We hope you love it! We'd be thrilled if you could <a class="sirv-open-in-new-window" href="<?= $reviewLink ?>" target="_blank">leave a review on the Adobe Commerce Marketplace</a>.<br/>
+            If you have any requests for our team, please <a href="https://sirv.com/contact/" target="_blank" class="sirv-open-in-new-window">message us</a>.</div>
+            <div class="sirv-review-banner-buttons">
+                <a href="<?= $reviewLink ?>"
+                   target="_blank"
+                   class="action action-primary action-sirv-review"
+                   title="<?= $block->escapeHtmlAttr(__('Leave a review')) ?>">
+                    <span><?= $block->escapeHtml(__('Leave a review')) ?>&nbsp;</span>
+                </a>
+                <a href="#"
+                   class="action action-default action-sirv-dismiss"
+                   title="<?= $block->escapeHtmlAttr(__('Dismiss')) ?>"
+                   data-mage-init='{"sirvDismissReview": {"ajaxUrl": "<?= $block->escapeUrl($block->getUrl('sirv/ajax/dismissreview')) ?>"}}' >
+                    <span><?= $block->escapeHtml(__('Dismiss')) ?></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

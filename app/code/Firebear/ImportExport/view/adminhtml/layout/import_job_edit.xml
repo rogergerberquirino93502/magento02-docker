@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Firebear_ImportExport::css/debug.css"/>
+        <css src="Firebear_ImportExport::css/selectize.css"/>
+    </head>
+    <body>
+            <referenceContainer name="content">
+                <uiComponent name="import_job_form"/>
+            </referenceContainer>
+    </body>
+</page>

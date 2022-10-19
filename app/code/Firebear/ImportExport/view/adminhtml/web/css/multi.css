@@ -1,0 +1,36 @@
+.admin__control-table td > .admin__control-text._has-datepicker {
+    width: 43%;
+    padding-right: 3.5rem;
+}
+
+.admin__control-table td > .admin__control-text._short {
+    width: 43%;
+    padding-right: 3.5rem;
+}
+
+._has-datepicker + .ui-datepicker-trigger + .admin__control-support-text
+{
+   margin-left: 0rem;
+}
+.admin__control-support-text.line {
+    margin-left:0;
+    width:50px;
+}
+
+.admin__control-table tbody td {
+    vertical-align: bottom;
+}
+
+/*
+.progress-bar {
+    background-color: #79a22e;
+    color: #fff;
+    float: left;
+    font-size: 1.19rem;
+    height: 100%;
+    line-height: 3rem;
+    text-align: center;
+    transition: width .6s ease;
+    width: 0;
+}
+ */

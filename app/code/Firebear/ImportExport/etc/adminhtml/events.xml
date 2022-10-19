@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_import_export_job_edit">
+        <observer name="firebear_importexport" instance="Firebear\ImportExport\Observer\SpoutMessageObserver"/>
+    </event>
+    <event name="controller_action_predispatch_import_job_edit">
+        <observer name="firebear_importexport" instance="Firebear\ImportExport\Observer\SpoutMessageObserver"/>
+    </event>
+</config>

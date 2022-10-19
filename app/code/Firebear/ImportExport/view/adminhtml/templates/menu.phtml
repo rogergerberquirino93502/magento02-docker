@@ -1,0 +1,27 @@
+<?php
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+/**
+ * @var Firebear\ImportExport\Block\Adminhtml\Menu $block
+ */
+
+$logLink = 'https://firebearstudio.com/blog/firebear-improved-import-export-for-magento-2-extension-change-log.html';
+?>
+<div class="fire_menu">
+    <img src="<?= /** @noEscape */ $block->getViewFileUrl('Firebear_ImportExport::images/logo.png') ?>"
+         width="50px" />
+    <div>
+        <div class="name">
+            <a target="_blank" href="<?= /** @noEscape */ $logLink ?>">
+                <?= $block->escapeHtml(__('Firebear Improved Import / Export v. %1', $block->getVersion())) ?>
+            </a>
+        </div>
+        <?php foreach ($block->getItems() as $element): ?>
+            <a target="_blank" href="<?= $block->escapeUrl($element['url']) ?>">
+                <?= $block->escapeHtml($element['label']) ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+</div>

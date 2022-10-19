@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Firebear_ImportExport::import_export" title="Improved Import / Export" translate="title" module="Firebear_ImportExport" sortOrder="15" parent="Magento_Backend::system" resource="Firebear_ImportExport::import_export"/>
+        <add id="Firebear_ImportExport::import_job" title="Import Jobs" module="Firebear_ImportExport" sortOrder="10" parent="Firebear_ImportExport::import_export" action="import/job" resource="Firebear_ImportExport::job"/>
+        <add id="Firebear_ImportExport::export_job" title="Export Jobs" module="Firebear_ImportExport" sortOrder="20" parent="Firebear_ImportExport::import_export" action="import/export_job" resource="Firebear_ImportExport::job"/>
+    </menu>
+</config>

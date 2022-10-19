@@ -514,8 +514,9 @@ class ElementHandler
                 $this->storeView->setSocialLike($value);
             }elseif ($element === ProductStoreView::ATTR_SOCIAL_QUANTITY){
                 $this->storeView->setSocialQuantity($value);
-            }
-             elseif ($element === ProductStoreView::ATTR_COUNTRY_OF_MANUFACTURE) {
+            }elseif ($element === ProductStoreView::ATTR_SOCIAL_BEINGS) {
+                $this->storeView->setSocialBeings($value);
+            }elseif ($element === ProductStoreView::ATTR_COUNTRY_OF_MANUFACTURE) {
                 $this->storeView->setCountryOfManufacture($value);
             } elseif ($element === ProductStoreView::ATTR_COLOR) {
                 $this->storeView->setColor($value);

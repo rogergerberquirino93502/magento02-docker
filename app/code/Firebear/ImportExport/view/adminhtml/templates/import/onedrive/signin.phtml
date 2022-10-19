@@ -1,0 +1,15 @@
+<?php /* @var $block \Firebear\ImportExport\Block\Adminhtml\OneDrive\Signin */ ?>
+
+<script>
+    require([
+        'jquery',
+        'prototype'
+    ], function(jQuery) {
+        jQuery('#onedrive-signin').click(function () {
+            window.open("<?= /* @noEscape */ $block->getAuthUrl() ?>", "_blank", "width=800,height=800");
+        });
+
+    });
+</script>
+
+<?= $block->getButtonHtml() ?>

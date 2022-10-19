@@ -1,0 +1,16 @@
+<div class="data-grid-combi">
+    <ul data-bind="foreach: { data: getList(), as: 'item' }" class="cron-listing">
+               <li>
+                <input class="admin__control-text" type="text"
+                       data-bind="
+        event: {change: $parent.userChanges, blur: $parent.OnBlurEvent.bind($parent)},
+        value: $parent[item.key],
+         hasFocus: false,
+        valueUpdate: $parent.valueUpdate,
+        attr: {
+            name: $parent.inputName + '[' +item.key +']'
+    }"
+                />
+               </li>
+    </ul>
+</div>

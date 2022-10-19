@@ -1,0 +1,21 @@
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<div css="modalClass" hasFocus="focused">
+    <div if="isNotice" text="notice" class="grid-severity-notice"></div>
+    <div if="isError" text="error" class="grid-severity-critical"></div>
+    <!-- ko if: isHref -->
+    <br/>
+    <a attr="href:href" data-bind="i18n:'Download file'"></a>
+    <br/>
+    <!-- /ko -->
+    <div class="admin__data-grid-loading-mask" if="loading">
+        <div class="spinner">
+            <span repeat="8"></span>
+        </div>
+    </div>
+    <each if="state() || $data.modal" args="data: elems, as: 'element'" render=""></each>
+</div>

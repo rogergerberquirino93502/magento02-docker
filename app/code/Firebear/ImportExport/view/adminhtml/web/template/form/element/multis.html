@@ -1,0 +1,34 @@
+<!--
+/**
+ * @copyright: Copyright © 2018 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<!-- ko if: typeText -->
+<input class="admin__control-text" type="text"
+       data-bind="
+        value: value,
+        hasFocus: focused,
+        valueUpdate: valueUpdate,
+        attr: {
+            name: inputName,
+            placeholder: placeholder,
+            'aria-describedby': noticeId,
+            disabled: disabled
+    }"/>
+<!-- /ko -->
+<!-- ko if: typeSelect -->
+<select class="admin__control-select" data-bind="
+    attr: {
+        name: inputName,
+        id: uid,
+        disabled: disabled,
+        'aria-describedby': noticeId
+    },
+    hasFocus: focused,
+    optgroup: options,
+    value: value,
+    optionsCaption: caption,
+    optionsValue: 'value',
+    optionsText: 'label'"></select>
+<!-- /ko -->

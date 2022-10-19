@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Firebear_ImportExport:etc/firebear_import.xsd">
+    <entity name="catalog_product" label="Products" model="Firebear\ImportExport\Model\Import\Product"
+            behaviorModel="Firebear\ImportExport\Model\Source\Import\Behavior\Product"/>
+    <entity name="catalog_category" label="Categories" model="Firebear\ImportExport\Model\Import\Category"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="customer_composite" label="Customers and Addresses (single file)"
+            model="Firebear\ImportExport\Model\Import\CustomerComposite"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="customer" label="Customers Main File" model="Firebear\ImportExport\Model\Import\Customer"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Custom"/>
+    <entity name="customer_address" label="Customer Addresses" model="Firebear\ImportExport\Model\Import\Address"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Custom"/>
+    <entity name="advanced_pricing" label="Advanced Pricing" model="Firebear\ImportExport\Model\Import\AdvancedPricing"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="order" label="Orders" model="Firebear\ImportExport\Model\Import\Order"
+            behaviorModel="Firebear\ImportExport\Model\Source\Import\Behavior\Order"/>
+    <entity name="attribute" label="Attributes" model="Firebear\ImportExport\Model\Import\Attribute"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="url_rewrite" label="Url Rewrite" model="Firebear\ImportExport\Model\Import\UrlRewrite"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="widget" label="Widget" model="Firebear\ImportExport\Model\Import\Widget"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="review" label="Review" model="Firebear\ImportExport\Model\Import\Review"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="sales_rule" label="Cart Price Rules" model="Firebear\ImportExport\Model\Import\SalesRule"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="catalog_rule" label="Catalog Rule" model="Firebear\ImportExport\Model\Import\CatalogRule"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="cms_page" label="CMS Page" model="Firebear\ImportExport\Model\Import\CmsPage"
+            behaviorModel="Firebear\ImportExport\Model\Source\Import\Behavior\CmsPage"/>
+    <entity name="cms_block" label="CMS Block" model="Firebear\ImportExport\Model\Import\CmsBlock"
+            behaviorModel="Firebear\ImportExport\Model\Source\Import\Behavior\CmsBlock"/>
+    <entity name="newsletter_subscriber" label="Newsletter Subscribers" model="Firebear\ImportExport\Model\Import\NewsletterSubscriber"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="search_query" label="Search Terms" model="Firebear\ImportExport\Model\Import\SearchTerms"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="search_synonyms" label="Search Synonyms" model="Firebear\ImportExport\Model\Import\SearchSynonyms"
+            behaviorModel="Magento\ImportExport\Model\Source\Import\Behavior\Basic"/>
+    <entity name="import_jobs" label="Import Jobs" model="Firebear\ImportExport\Model\Import\ImportJobs"
+            behaviorModel="Firebear\ImportExport\Model\Source\Import\Behavior\Jobs"/>
+    <entity name="export_jobs" label="Export Jobs" model="Firebear\ImportExport\Model\Import\ExportJobs"
+            behaviorModel="Firebear\ImportExport\Model\Source\Import\Behavior\Jobs"/>
+    <entityType entity="catalog_product" name="simple" model="Firebear\ImportExport\Model\Import\Product\Type\Simple"/>
+    <entityType entity="catalog_product" name="virtual"
+                model="Magento\CatalogImportExport\Model\Import\Product\Type\Virtual"/>
+    <entityType entity="catalog_product" name="configurable"
+                model="Firebear\ImportExport\Model\Import\Product\Type\Configurable"/>
+    <entityType entity="catalog_product" name="weee_tax" model="Firebear\ImportExport\Model\Import\Product\Type\Tax"/>
+    <entityType entity="catalog_product" name="bundle"
+                model="Firebear\ImportExport\Model\Import\Product\Type\Bundle"/>
+    <entityType entity="catalog_product" name="downloadable"
+                model="Firebear\ImportExport\Model\Import\Product\Type\Downloadable"/>
+    <entityType entity="catalog_product" name="grouped"
+                model="Firebear\ImportExport\Model\Import\Product\Type\Grouped"/>
+    <relatedIndexer entity="catalog_product" name="catalog_product_price"/>
+    <relatedIndexer entity="catalog_product" name="catalogsearch_fulltext"/>
+    <relatedIndexer entity="catalog_product" name="catalog_product_flat"/>
+    <relatedIndexer entity="customer" name="customer_grid"/>
+    <relatedIndexer entity="customer_address" name="customer_grid"/>
+    <relatedIndexer entity="customer_composite" name="customer_grid"/>
+    <!-- Adding relatedIndexer CART PRICE RULE -->
+    <relatedIndexer entity="sales_rule" name="cart_price_rule_grid"/>
+    <relatedIndexer entity="catalog_rule" name="catalog_price_rule_grid"/>
+</config>

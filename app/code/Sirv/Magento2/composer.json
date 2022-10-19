@@ -1,0 +1,26 @@
+{
+    "name": "sirv/magento2",
+    "description": "Sirv module for Adobe Commerce",
+    "type": "magento2-module",
+    "version": "6.0.2",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "magento/module-backend": ">=100.0",
+        "magento/module-catalog": ">=100.0"
+    },
+    "conflict": {
+        "magictoolbox/sirv": "*",
+        "magictoolbox/magic360": "<1.7.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Sirv\\Magento2\\": ""
+        }
+    }
+}

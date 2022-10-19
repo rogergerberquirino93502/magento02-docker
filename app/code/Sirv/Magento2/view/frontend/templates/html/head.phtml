@@ -1,0 +1,38 @@
+<?php
+/**
+ * Head block template
+ *
+ * @author    Sirv Limited <support@sirv.com>
+ * @copyright Copyright (c) 2018-2022 Sirv Limited <support@sirv.com>. All rights reserved
+ * @license   https://sirv.com/
+ * @link      https://sirv.com/integration/magento/
+ *
+ * @codingStandardsIgnoreFile
+ */
+
+/**
+ * @var $block \Sirv\Magento2\Block\Html\Head
+ */
+
+if (!$block->isVisibile()) {
+    return;
+}
+
+$sirvUrl = $block->getSirvUrl();
+$baseStaticUrl = $block->getBaseStaticUrl();
+$sirvDomain = parse_url($sirvUrl, PHP_URL_HOST) ?: '';
+$staticDomain = parse_url($baseStaticUrl, PHP_URL_HOST) ?: '';
+?>
+<script>
+    require.config({
+        'config': {
+            'text': {
+                'domains': {
+                    'sirv': '<?= $block->escapeUrl($sirvDomain) ?>',
+                    'static': '<?= $block->escapeUrl($staticDomain) ?>'
+                },
+                'fetchMode': '<?= $block->getFetchMode() ?>'
+            }
+        }
+    });
+</script>

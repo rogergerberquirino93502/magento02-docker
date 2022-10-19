@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+    <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="MaxiCompra\Blog\Observer\LogPostDetailView">
+        <plugin name="maxicompra_blogextra_add_data_to_post_detail_observer" type="MaxiCompra\BlogExtra\Plugin\AddDataToPostDetailObserver"/>
+        <plugin name="maxicompra_blogextra_prevent_post_detail_logger" type="MaxiCompra\BlogExtra\Plugin\PreventPostDetailLogger" disabled="true"/>
+    </type>
+    <type name="MaxiCompra\Blog\Controller\Post\Detail">
+    <plugin name="maxicompra_blogextra_alternate_post_detail_template" type="MaxiCompra\BlogExtra\Plugin\AlternatePostDetailTemplate"/>
+    </type>
+    <preference for="MaxiCompra\Blog\Controller\Post\Detail" type="MaxiCompra\BlogExtra\Controller\Post\Detail"/>
+</config>

@@ -61,6 +61,7 @@ class ProductStoreView
     const ATTR_MANUFACTURER = 'manufacturer';
     const ATTR_SOCIAL_LIKE = 'social_like';
     const ATTR_SOCIAL_QUANTITY = 'social_quantity';
+    const ATTR_SOCIAL_BEINGS = 'social_beings';
 
 
 
@@ -330,6 +331,16 @@ class ProductStoreView
     public function getSocialQuantity()
     {
         return array_key_exists(self::ATTR_SOCIAL_QUANTITY, $this->attributes) ? $this->attributes[self::ATTR_SOCIAL_QUANTITY]: null;
+    }
+
+    public function setSocialBeings(string $name = null)
+    {
+        $this->attributes[self::ATTR_SOCIAL_BEINGS] = ($name === null) ? null : trim($name);
+    }
+
+    public function getSocialBeings()
+    {
+        return array_key_exists(self::ATTR_SOCIAL_BEINGS, $this->attributes) ? $this->attributes[self::ATTR_SOCIAL_BEINGS]: null;
     }
 
     /**

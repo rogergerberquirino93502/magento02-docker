@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Firebear_ImportExport::config_importexport" title="Firebear ImportExport Section" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::system">
+                    <resource id="Firebear_ImportExport::import_export" title="Improved Import / Export" translate="title" sortOrder="15" >
+                        <resource id="Firebear_ImportExport::job" title="Import Jobs" sortOrder="10" />
+                        <resource id="Firebear_ImportExport::export_job" title="Export Jobs" sortOrder="20" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

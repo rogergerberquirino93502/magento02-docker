@@ -1,0 +1,16 @@
+<!--
+/**
+ * @copyright: Copyright © 2017 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<button class="action-delete"
+        attr="{'data-action': 'remove_row'}"
+        data-bind="
+            click: function(){ $data.deleteRecord($parents); },
+            attr: {
+                title: $parent.deleteButtonLabel
+            }
+        ">
+    <span data-bind="text: $parent.deleteButtonLabel"></span>
+</button>

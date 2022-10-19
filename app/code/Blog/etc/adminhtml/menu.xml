@@ -1,0 +1,10 @@
+<config>
+    <menu>
+        <add id="MaxiCompra_Blog::micatalogo" 
+        title="Catalogo" translate="title" 
+        module="MaxiCompra_Blog" sortOrder="100" 
+        parent="Magento_Catalog::inventory"
+        action="micatalogo/product/index"
+        resource="MaxiCompra_Blog::micatalogo"/>
+    </menu>
+</config>

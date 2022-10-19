@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2020 Firebear Studio. All rights reserved.
+ * @author: Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- import job -->
+    <route url="/V1/import/job/:jobId" method="GET">
+        <service class="Firebear\ImportExport\Api\Import\GetByIdInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/search" method="GET">
+        <service class="Firebear\ImportExport\Api\Import\GetListInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\SaveInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job" method="PUT">
+        <service class="Firebear\ImportExport\Api\Import\SaveInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/:jobId" method="DELETE">
+        <service class="Firebear\ImportExport\Api\Import\DeleteByIdInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/beforeRun" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\BeforeRunInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/run" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\RunInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/bunch/count" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\GetBunchCountInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/process" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\ProcessInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/console" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\ConsoleInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/job/reindex" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\ReindexInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+    <route url="/V1/import/file/upload" method="POST">
+        <service class="Firebear\ImportExport\Api\Import\UploadInterface" method="execute"/>
+        <resources>
+            <resource ref="Firebear_ImportExport::job"/>
+        </resources>
+    </route>
+</routes>

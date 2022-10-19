@@ -40,7 +40,7 @@ class AddImagesToGalleryBlock{
              //metodo que obtiene las imagenes url externas importadas en CSV y la guarda en un atributo del producto
             $externalImages = ["http://media.maxicompra.com/image/producto/07j/1wz/8pd/B07J1WZ8PD.jpg"];
 
-     
+
              //get images from custom attribute
              foreach ($externalImages as $item) {
                 $imageId = uniqid();

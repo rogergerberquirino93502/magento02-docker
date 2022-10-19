@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+    <type name="cache_import_product" translate="label,description" instance="Firebear\ImportExport\Model\Cache\Type\ImportProduct">
+        <label>Cache Import Products</label>
+        <description>Cache Import Product</description>
+    </type>
+</config>

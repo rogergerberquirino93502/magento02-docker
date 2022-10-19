@@ -1,0 +1,56 @@
+div.debug {
+    border: 1px solid #000;
+    background: #f8f8f8;
+    padding:10px;
+    overflow-y: auto;
+    height:320px;
+}
+
+.admin__field-success {
+    color:#79a22e;
+}
+
+.pbar .progress-pbar {display:block !important;background: #eb5202; height:25px; width:0px;}
+.pbar {overflow: hidden; border: 2px solid #eb5202; height:25px; width:100%; margin:10px 0; position:relative;}
+
+.percent {position:absolute; width:30px;height:25px; left:45%; top:0px;}
+.percent::after {
+    content: '%';
+}
+
+.action-menu, .abs-action-menu .action-submenu, .action-menu .action-submenu, .actions-split .dropdown-menu .action-submenu, .actions-split .action-menu .action-submenu
+{
+    position: relative !important;
+}
+
+.admin__fieldset > .admin__field > .specialFire {
+    width: calc( (100%) * 0.9 );
+}
+.console-emergency {
+
+}
+.console-alert {
+
+}
+.console-critical {
+    font-weight: bold;
+}
+.console-critical,
+.console-error {
+    color: #ec4c28;
+}
+.console-warning {
+    color: #da971b;
+}
+.console-notice {
+
+}
+.console-info {
+
+}
+.console-debug {
+
+}
+.console-log {
+
+}

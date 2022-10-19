@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @copyright: Copyright © 2019 Firebear Studio. All rights reserved.
+ * @author   : Firebear Studio <fbeardev@gmail.com>
+ */
+-->
+<ruleset name="Firebear">
+    <description>Firebear Studio Coding Standard (based on Magento2)</description>
+    <rule ref="Magento2">
+        <exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
+        <exclude name="Generic.Metrics.NestingLevel.TooHigh"/>
+        <exclude name="Magento2.CodeAnalysis.EmptyBlock.DetectedCatch"/>
+        <exclude name="Magento2.Exceptions.ThrowCatch.ThrowCatch"/>
+        <exclude name="Magento2.Functions.DiscouragedFunction.Discouraged"/>
+        <exclude name="Magento2.Functions.StaticFunction.StaticFunction"/>
+        <exclude name="Magento2.Performance.ForeachArrayMerge.ForeachArrayMerge"/>
+        <exclude name="Magento2.Commenting.ClassAndInterfacePHPDocFormatting.ForbiddenTags"/>
+        <exclude name="Magento2.Commenting.ClassAndInterfacePHPDocFormatting.InvalidDescription"/>
+        <exclude name="Magento2.Functions.DiscouragedFunction.DiscouragedWithAlternative"/>
+        <exclude name="Magento2.Commenting.ConstantsPHPDocFormatting.MissingConstantPHPDoc"/>
+        <exclude name="Magento2.Exceptions.TryProcessSystemResources.MissingTryCatch"/>
+    </rule>
+
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+</ruleset>
